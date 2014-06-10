@@ -31,24 +31,17 @@
             <ul class="nav">
               <li class="active"><a href="#">Connexion</a></li>
               <li><a href="#">Inscription</a></li>
-              <li><a href="#">Contactez-nous</a></li>
               <!-- Menu déroulant -->
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu deroulant <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Action 1</a></li>
-                  <li><a href="#">Action 2</a></li>
+                  <li><a href="#">Changement mot de passe</a></li>
                   <li class="divider"></li>
-                  <li class="nav-header">Autres liens</li>
-                  <li><a href="#">Lien 1</a></li>
-                  <li><a href="#">Lien 2</a></li>
+                  <li><a href="#">Historique de jeu</a></li>
                 </ul>
               </li>
             </ul>
             <!-- Champ de recherche -->
-            <form class="navbar-search pull-right" action="#">
-              <input type="text" class="search-query span2" placeholder="Rechercher">
-            </form>
           </div>
         </div>
       </div>
