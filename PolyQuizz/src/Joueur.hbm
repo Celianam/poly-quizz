@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="modele">
+	<class name="Joueur" table="joueur" lazy="false">
+		<id
+			column="id"
+			name="Id"
+			type="integer"
+		>
+			<generator class="native" />
+		</id>
+		<property
+			column="mdp"
+			name="Mdp"
+			not-null="false"
+			type="binary"
+		 />
+		<property
+			column="pseudo"
+			length="100"
+			name="Pseudo"
+			not-null="false"
+			type="string"
+		 />
+	</class>
+</hibernate-mapping>
