@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>login form layered  - Bootsnipp.com</title>
+    <title>Connexion</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="Bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
