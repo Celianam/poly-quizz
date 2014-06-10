@@ -23,7 +23,7 @@ public class gestionInscription extends HttpServlet {
     }
     
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
-    	String resultat;
+    	String resultat = null;
     	Map<String, String> erreurs = new HashMap<String, String>();
     	/* Récupération des champs du formulaire. */
         String pseudo = request.getParameter( CHAMP_PSEUDO );
@@ -44,9 +44,9 @@ public class gestionInscription extends HttpServlet {
         	erreurs.put( CHAMP_PASSWORD, e.getMessage() );
         }
         
-        if (nbErreurs == 0)
+        if (erreurs.isEmpty())
         {
-        	System.out.println("Succès de l'inscription");
+        	resultat = "Succès de l'inscription";
         	ajoutNouvelUtilisateur(pseudo,motDePasse);
         }
         else 
@@ -55,7 +55,7 @@ public class gestionInscription extends HttpServlet {
         }
         /* Stockage du résultat et des messages d'erreur dans l'objet request */
         request.setAttribute( ATT_ERREURS, erreurs );
-        request.setAttribute( ATT_RESULTAT, resultat );
+        request.setAttribute( ATT_RESULTAT, resultat);
         
         /* Transmission de la paire d'objets request/response à notre JSP */
         this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
