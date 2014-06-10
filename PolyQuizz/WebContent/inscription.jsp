@@ -17,34 +17,7 @@
     <div class="container">
       
       <!-- Barre de navigation -->
-      <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-          <!-- Bouton apparaissant sur les résolutions mobiles afin de faire apparaître le menu de navigation -->
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Poly Quizz</a>
-          <!-- Structure du menu -->
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Inscription</a></li>
-              <li><a href="#">Connexion</a></li>
-              <!-- Menu déroulant -->
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Changement mot de passe</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Historique de jeu</a></li>
-                </ul>
-              </li>
-            </ul>
-            <!-- Champ de recherche -->
-          </div>
-        </div>
-      </div>
+      <jsp:include page="menu.jsp" />
       
       <!-- Formulaire d'inscription -->
       <h2>Cr�ation de votre compte joueur</h2><br/>
