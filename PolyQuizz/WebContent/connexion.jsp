@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%
+	String user = request.getParameter("user");
+	System.out.println(user);
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>login form layered  - Bootsnipp.com</title>
+    <title>Connexion</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="Bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
@@ -161,18 +167,21 @@ html,body{
             <div id="output"></div>
             <div class="avatar"></div>
             <div class="form-box">
-                <form action="" method="">
-                    <input name="user" type="text" placeholder="username">
-                    <input type="password" placeholder="password">
-                    <button class="btn btn-info btn-block login" type="submit">Login</button>
+                <form action="connexion.jsp" method="post">
+                    <input id="user" name="user" type="text" placeholder="username">
+                    <input id="password" name="password" type="password" placeholder="password">
+                    <input class="btn btn-info btn-block login" type="submit" onclick="access()">Login</input>
                 </form>
             </div>
         </div>
+
  		<script type="text/javascript">
+ 		
 $(function(){
-var textfield = $("input[name=user]");
+//var textfield = $("input[name=user]");
+var textfield = "<%= user %>";
             $('button[type="submit"]').click(function(e) {
-                e.preventDefault();
+                e.preventDefault(); 
                 //little validation just to check username
                 if (textfield.val() != "") {
                     //$("body").scrollTo("#output");
@@ -199,7 +208,7 @@ var textfield = $("input[name=user]");
                     $(".avatar").css({
                         "background-image": "url('http://co2nsult.co.uk/wp-content/uploads/2012/09/bill-validation-icon.png')"
                     });
-                } else {
+                 } else {
                     //remove success mesage replaced with error message
                     $("#output").removeClass(' alert alert-success');
                     $("#output").addClass("alert alert-danger animated fadeInUp").html("Désolé, je ne vous connais pas, inscrivez vous ! ");
@@ -208,11 +217,11 @@ var textfield = $("input[name=user]");
                     $(".avatar").css({
                         "background-image": "url('http://www.theemailadmin.com/wp-content/uploads/2012/01/error_button.png')"
                     });
-                }
+                } 
                 //console.log(textfield.val());
 
             });
-});
+}); 
 </script>
-  </body>
+</body>
 </html>
