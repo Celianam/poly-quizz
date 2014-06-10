@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="modele">
+	<class name="Round" table="round" lazy="false">
+		<id
+			column="id"
+			name="Id"
+			type="integer"
+		>
+			<generator class="native" />
+		</id>
+		<many-to-one class="Partie" name="partie" column="partie"/>
+		<set name="questions" table="round_question">
+		 	<key column="round"/>
+		 	<many-to-many class="Question" column="question"/>
+		</set>
+	</class>
+</hibernate-mapping>

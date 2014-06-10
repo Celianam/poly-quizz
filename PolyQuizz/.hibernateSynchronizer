@@ -1,0 +1,7 @@
+EnumExclude=theme
+package=modele
+databaseUrl=jdbc:mysql://localhost/quizz
+driver=org.gjt.mm.mysql.Driver
+EnumInclude=
+ConfigurationFile=\PolyQuizz\src\hibernate.cfg.xml
+username=root
