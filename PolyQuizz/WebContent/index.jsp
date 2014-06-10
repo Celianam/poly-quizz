@@ -41,11 +41,10 @@
                 </ul>
               </li>
             </ul>
-            <!-- Champ de recherche -->
           </div>
         </div>
       </div>
-     
+     <center></center><img src="img/accueil.jpg"/></center>
     </div>
     
     <!-- Intégration de la libraire jQuery -->
