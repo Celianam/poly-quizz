@@ -11,20 +11,20 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class ThemeRepository 
+public class QuestionRepository 
 {
-	public static List<Theme> findAll()
+	public static List<Question> findAll()
 	{
-		List<Theme> listThemes = new ArrayList<Theme>();
+		List<Question> listQuestions = new ArrayList<Question>();
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from Theme");
-			Iterator<Theme> themes = query.iterate();
+			Query query = session.createQuery("from Question");
+			Iterator<Question> questions = query.iterate();
 			
-			while(themes.hasNext())
+			while(questions.hasNext())
 			{
-				listThemes.add((Theme)themes.next());
+				listQuestions.add((Question)questions.next());
 			}
 			
 			HibernateUtil.closeSession();
@@ -34,16 +34,16 @@ public class ThemeRepository
 			e.printStackTrace();
 		}
 		
-		return listThemes;
+		return listQuestions;
 	}
 	
-	public static Theme find(int id)
+	public static Question find(int id)
 	{
-		Theme j = null;
+		Question j = null;
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			j = (Theme) session.load(Theme.class, id);
+			j = (Question) session.load(Question.class, id);
 			HibernateUtil.closeSession();
 		}
 		catch(HibernateException e)
@@ -54,14 +54,14 @@ public class ThemeRepository
 		return j;
 	}
 	
-	public static void save(Theme theme)
+	public static void save(Question question)
 	{
 		Transaction tx = null;
 		try
 		{
 			Session session = HibernateUtil.currentSession();
 			tx = session.beginTransaction();
-			session.save(theme);
+			session.save(question);
 			tx.commit();
 			HibernateUtil.closeSession();
 		}
@@ -75,14 +75,14 @@ public class ThemeRepository
 		}
 	}
 	
-	public static void update(Theme theme)
+	public static void update(Question question)
 	{
 		Transaction tx = null;
 		try
 		{
 			Session session = HibernateUtil.currentSession();
 			tx = session.beginTransaction();
-			session.update(theme);
+			session.update(question);
 			tx.commit();
 			HibernateUtil.closeSession();
 		}
@@ -96,14 +96,14 @@ public class ThemeRepository
 		}
 	}
 	
-	public static void delete(Theme theme)
+	public static void delete(Question question)
 	{
 		Transaction tx = null;
 		try
 		{
 			Session session = HibernateUtil.currentSession();
 			tx = session.beginTransaction();
-			session.delete(theme);
+			session.delete(question);
 			tx.commit();
 			HibernateUtil.closeSession();
 		}
