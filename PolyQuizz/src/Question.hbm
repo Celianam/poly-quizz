@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="modele">
+	<class name="Question" table="question" lazy="false">
+		<id
+			column="id"
+			name="Id"
+			type="integer"
+		>
+			<generator class="native" />
+		</id>
+		<property
+			column="question"
+			length="100"
+			name="Question"
+			not-null="false"
+			type="string"
+		 />
+		<property
+			column="bonneReponse"
+			length="50"
+			name="BonneReponse"
+			not-null="false"
+			type="string"
+		 />
+		<property
+			column="reponseA"
+			length="50"
+			name="ReponseA"
+			not-null="false"
+			type="string"
+		 />
+		<property
+			column="theme"
+			length="10"
+			name="Theme"
+			not-null="true"
+			type="integer"
+		 />
+		<property
+			column="reponseD"
+			length="50"
+			name="ReponseD"
+			not-null="false"
+			type="string"
+		 />
+		<property
+			column="reponseB"
+			length="50"
+			name="ReponseB"
+			not-null="false"
+			type="string"
+		 />
+		<property
+			column="reponseC"
+			length="50"
+			name="ReponseC"
+			not-null="false"
+			type="string"
+		 />
+	</class>
+</hibernate-mapping>
