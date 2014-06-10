@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="modele">
+	<class name="Partie" table="partie" lazy="false">
+		<id
+			column="id"
+			name="Id"
+			type="integer"
+		>
+			<generator class="native" />
+		</id>
+		<property
+			column="scoreJoueur2"
+			length="10"
+			name="ScoreJoueur2"
+			not-null="false"
+			type="integer"
+		 />
+		<property
+			column="joueur1"
+			length="10"
+			name="Joueur1"
+			not-null="false"
+			type="integer"
+		 />
+		<property
+			column="scoreJoueur1"
+			length="10"
+			name="ScoreJoueur1"
+			not-null="false"
+			type="integer"
+		 />
+		<property
+			column="roundCourant"
+			length="10"
+			name="RoundCourant"
+			not-null="false"
+			type="integer"
+		 />
+		<property
+			column="joueurCourant"
+			length="10"
+			name="JoueurCourant"
+			not-null="false"
+			type="integer"
+		 />
+		<property
+			column="joueur2"
+			length="10"
+			name="Joueur2"
+			not-null="false"
+			type="integer"
+		 />
+		 <set name="rounds" inverse="true">
+		 	<key column="partie"/>
+		 	<one-to-many class="Round"/>
+		 </set>
+	</class>
+</hibernate-mapping>

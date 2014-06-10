@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="modele">
+	<class name="Reponse" table="reponse" lazy="false">
+		<composite-id class="ReponsePK" name="Id">
+			<key-property
+				column="round"
+				name="Round"
+				type="integer"
+			 />
+			<key-property
+				column="question"
+				name="Question"
+				type="integer"
+			 />
+			<key-property
+				column="joueur"
+				name="Joueur"
+				type="integer"
+			 />
+		</composite-id>
+		<property
+			column="reponse"
+			length="50"
+			name="Reponse"
+			not-null="false"
+			type="string"
+		 />
+	</class>
+</hibernate-mapping>
