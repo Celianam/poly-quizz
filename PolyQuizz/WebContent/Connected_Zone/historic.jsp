@@ -42,17 +42,17 @@
 			        <tbody>  
 			          <tr>  
 			            <td><center>Aurélien</center></td> 
-			            <td><center><span class="badge">9</span> <span> / </span> <span class="badge">7</span></center></td>
+			            <td><center><span class="badge-vert">9</span> <span> / </span> <span class="badge">7</span></center></td>
 			            <td><center><span class="glyphicon glyphicon-ok"> Victoire</span></center></td>
 			          </tr>  
 			          <tr>  
 			            <td><center>Giovanny</center></td> 
-			            <td><center><span class="badge">0</span> <span> / </span> <span class="badge">15</span></center></td>
+			            <td><center><span class="badge-rouge">0</span> <span> / </span> <span class="badge">15</span></center></td>
 			            <td><center><span class="glyphicon glyphicon-remove"> Défaite</span></center></td>
 			          </tr>   
 			          <tr>  
 			            <td><center>Francine</center></td> 
-			            <td><center><span class="badge">13</span> <span> / </span> <span class="badge">12</span></center></td>
+			            <td><center><span class="badge-vert">13</span> <span> / </span> <span class="badge">12</span></center></td>
 			            <td><center><span class="glyphicon glyphicon-ok"> Victoire</span></center></td>
 			          </tr>    
 			        </tbody>  
