@@ -3,6 +3,8 @@
     
 <%@ page import="controle.FormValidation" %>
 <%@ page import="modele.JoueurRepository" %>
+<%@ page import="modele.Joueur" %>
+
     
 <% 
 	String pseudo = request.getParameter("exampleInputPseudo");
@@ -55,7 +57,8 @@
 
 	// Si joueur reconnu, redirection page joueur
 	if(pseudoOK && mdpOK && login) {
-		session.setAttribute("joueur", pseudo);
+		Joueur joueur = JoueurRepository.find(pseudo);
+		session.setAttribute("joueur", joueur);
 		response.sendRedirect("/PolyQuizz/Connected_Zone/index.jsp");
 	}
 
