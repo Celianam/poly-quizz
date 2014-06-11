@@ -20,7 +20,9 @@ import modele.Round;
 public abstract class BasePartie  implements Serializable {
 
 	public static String PROP_SCORE_JOUEUR1 = "ScoreJoueur1";
+	public static String PROP_ROUND_JOUEUR1 = "RoundJoueur1";
 	public static String PROP_SCORE_JOUEUR2 = "ScoreJoueur2";
+	public static String PROP_ROUND_JOUEUR2 = "RoundJoueur2";
 	public static String PROP_JOUEUR2 = "Joueur2";
 	public static String PROP_JOUEUR1 = "Joueur1";
 	public static String PROP_JOUEUR_COURANT = "JoueurCourant";
@@ -36,6 +38,8 @@ public abstract class BasePartie  implements Serializable {
 	// fields
 	private java.lang.Integer _scoreJoueur2;
 	private java.lang.Integer _scoreJoueur1;
+	private java.lang.Integer _roundJoueur1;
+	private java.lang.Integer _roundJoueur2;
 
 	// many to one
 	private modele.Joueur _joueur1;
@@ -113,6 +117,38 @@ public abstract class BasePartie  implements Serializable {
 	 */
 	public void setScoreJoueur1 (java.lang.Integer _scoreJoueur1) {
 		this._scoreJoueur1 = _scoreJoueur1;
+	}
+
+
+	/**
+	 * Return the value associated with the column: numRoundJoueur1
+	 */
+	public java.lang.Integer getRoundJoueur1 () {
+		return _roundJoueur1;
+	}
+
+	/**
+	 * Set the value related to the column: numRoundJoueur1
+	 * @param _roundJoueur1 the numRoundJoueur1 value
+	 */
+	public void setRoundJoueur1 (java.lang.Integer _roundJoueur1) {
+		this._roundJoueur1 = _roundJoueur1;
+	}
+
+
+	/**
+	 * Return the value associated with the column: numRoundJoueur2
+	 */
+	public java.lang.Integer getRoundJoueur2 () {
+		return _roundJoueur2;
+	}
+
+	/**
+	 * Set the value related to the column: numRoundJoueur2
+	 * @param _roundJoueur2 the numRoundJoueur2 value
+	 */
+	public void setRoundJoueur2 (java.lang.Integer _roundJoueur2) {
+		this._roundJoueur2 = _roundJoueur2;
 	}
 
 

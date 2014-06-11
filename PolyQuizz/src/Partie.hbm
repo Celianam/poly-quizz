@@ -50,6 +50,22 @@
 			class="Joueur"
 		 />
 		 
+		 <property
+			column="numRoundJoueur1"
+			length="10"
+			name="RoundJoueur1"
+			not-null="false"
+			type="integer"
+		 />
+		 
+		 <property
+			column="numRoundJoueur2"
+			length="10"
+			name="RoundJoueur2"
+			not-null="false"
+			type="integer"
+		 />
+		 
 		 <set name="rounds" lazy="false" inverse="true">
 		 	<key column="partie"/>
 		 	<one-to-many class="Round"/>
