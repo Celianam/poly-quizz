@@ -19,7 +19,7 @@
       
       <!-- Barre de navigation -->
      <div>
-	 	<jsp:include page="../menu.jsp" />
+	 	<jsp:include page="menu.jsp" />
 	 </div>
 	 
 	<!-- Question -->
