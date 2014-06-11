@@ -80,15 +80,13 @@
       <!-- Barre de navigation -->
       <jsp:include page="menu.jsp" />
       <!-- Page de Connexion : -->
-		<div class="col-md-4 col-md-offset-4">
     		<div class="panel panel-default">
   				<div class="panel-heading"><h3 class="panel-title"><strong>Connexion </strong></h3>
-  					
   				</div>
   
   				<div class="panel-body">
 				   	<form role="form" action="connexion.jsp" method="post">
-
+						<h2>Connectez vous et jouez !</h2><br/>
 				  		<div class="form-group">
 						    <label for="exampleInputEmail1">Pseudo</label>
 						    <input type="text" class="form-control" style="border-radius:0px" name="exampleInputPseudo" placeholder="Entrer votre pseudo">
@@ -111,7 +109,6 @@
 					</form>
   				</div>
 			</div>
-		</div>
 	</div>
 </body>
 </html>
