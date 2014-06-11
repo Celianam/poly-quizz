@@ -25,19 +25,94 @@
 	rel="stylesheet">
 </head>
 <body>
-	<!-- Conteneur principal -->
-	<div class="container">
 
-		<!-- Barre de navigation -->
-		<div>
-			<jsp:include page="menu.jsp" />
-		</div>
-		<!-- Liste invitations recues -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<strong>Invitation(s) recu(s)</strong>
-				</h3>
+<!-- Conteneur principal -->
+    <div class="container">
+      
+      <!-- Barre de navigation -->
+      <div>
+	 <jsp:include page="menu.jsp" />
+	 <div class="row-fluid">
+      <img class="imgAutoSize" src="../img/banniere_sous_menu.png"/>
+      </br>
+      </div>
+	 </div>
+	 <!-- Liste invitations recues -->
+	 <h2>Gestionnaire d'invitations</h2>
+	 <div class="panel panel-default">
+		<div class="panel-heading"><h3 class="panel-title"><strong>Invitation(s) recu(s)</strong></h3></div>
+		<div class="panel-body">
+			<!-- LISTE DES INSCRITS POUR INVITATION : -->
+			<div class="row-fluid">
+			<div class="achievements-wrapper">
+			<table class="table table-striped">  
+        <thead>  
+          <tr>  
+            <th><center>Joueur</center></th>  
+            <th><center>Action</center></th>  
+            <th><center>Déjà rencontré</center></th>  
+            <th><center>Victoire / Défaite</center></th>  
+          </tr>  
+        </thead>  
+        <tbody>  
+          <tr>  
+            <td><center>Aurélien</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>  
+				</div>
+            </center></td>  
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge-vert">3</span> <span class="badge-rouge">1</span></center></td>  
+          </tr>  
+          <tr>  
+            <td><center>Stephanie</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>  
+				</div>
+            </center></td>  
+            <td><center><span class="glyphicon glyphicon-remove"></span></center></td>  
+            <td><center><span class="badge-vert">3</span> <span class="badge-rouge">1</span></center></td>  
+          </tr>  
+          <tr>  
+            <td><center>Celine</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>  
+				</div>
+            </center></td>  
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge-vert">3</span> <span class="badge-rouge">1</span></center></td>  
+          </tr>  
+          <tr>  
+            <td><center>Giovanny</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>
+				</div>
+            </center></td>  
+            <td><center><span class="glyphicon glyphicon-remove"></span></center></td>  
+            <td><center><span class="badge-vert">2</span> <span class="badge-rouge">0</span></center></td>  
+          </tr>  
+          <tr>  
+            <td><center>Francine</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>
+				</div>
+            </center></td>   
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge-vert">4</span> <span class="badge-rouge">1</span></center></td>  
+          </tr>  
+        </tbody>  
+      </table>
+      </div>
 			</div>
 			<div class="panel-body">
 				<!-- LISTE DES INSCRITS POUR INVITATION : -->

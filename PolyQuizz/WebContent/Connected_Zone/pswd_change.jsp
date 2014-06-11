@@ -14,7 +14,11 @@
 </head>
 <body>
     <div class="container">
-      	<jsp:include page="menu.jsp" />
+      <jsp:include page="menu.jsp" />
+      <div class="row-fluid">
+      <img class="imgAutoSize" src="../img/banniere_sous_menu.png"/>
+      </br>
+      </div>
 	      <!-- Barre de navigation -->
 		 
 		 <div class="row-fluid">

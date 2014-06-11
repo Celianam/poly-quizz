@@ -53,7 +53,7 @@ public class RoundRepository
 		
 		return j;
 	}
-	
+
 	public static void save(Round round)
 	{
 		Transaction tx = null;
@@ -61,7 +61,8 @@ public class RoundRepository
 		{
 			Session session = HibernateUtil.currentSession();
 			tx = session.beginTransaction();
-			session.save(round);
+			int i = (Integer) session.save(round);
+			round.setId(i);
 			tx.commit();
 			HibernateUtil.closeSession();
 		}

@@ -20,52 +20,33 @@
       <!-- Barre de navigation -->
      <div>
 	 	<jsp:include page="menu.jsp" />
-	 </div><br/><br/>
+	 </div>
 	 
 	<!-- Question -->
 	<div class="jumbotron">
-		<h2>Question 1</h2>
-  		<p>Combien j'ai sur mon compte en banque ?</p>
-  		<p>0/0</p>
+		<h2>Choix du thème</h2>
+  		<p>Choisissez un thème pour votre prochain round</p>
 	</div>
 
 
 	 <!-- Réponses -->
 	<div class="panel panel-default">
-		<div class="panel-heading"><h3 class="panel-title"><strong>Réponses</strong></h3></div>
+		<div class="panel-heading"><h3 class="panel-title"><strong>Sur quel thème allez-vous vous affronter ?</strong></h3></div>
 		<div class="panel-body">
 			<!-- LISTE DES INSCRITS POUR INVITATION : -->
 			<div class="row-fluid">
 			<table class="table table-striped">  
         <tbody>  
           <tr>  
-<!--             <td><center>10000</center></td>
-            <td><center>15000</center></td>
-            <td><center>100</center></td>
-            <td><center>Plus rien, je suis pauvre.</center></td> 
-          </tr> -->  
+	       <td><center><img src="../../img/Cinema_icone.png"/></center></td>
+            <td><center><img src="../../img/Histoire_icone.png"/></center></td>
+            <td><center><img src="../../img/Litterature_icone.png"/></center></td>
+          </tr>
           <tr>  
-            <td><center>
-            	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">10000</button>
-				</div>
-            </center></td>
-            <td><center>
-            	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">15000</button>
-				</div>
-            </center></td>
-            <td><center>
-            	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">100</button>
-				</div>
-            </center></td>
-            <td><center>
-            	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Plus rien, je suis pauvre.</button>
-				</div>
-            </center></td>  
-          </tr> 
+	       <td><center><img src="../../img/Musique_icone.png"/></center></td>
+            <td><center><img src="../../img/Technologie_icone.png"/></center></td>
+            <td><center><img src="../../img/jvideo_icone.png"/></center></td>
+          </tr>
         </tbody>  
       </table>
 			</div>

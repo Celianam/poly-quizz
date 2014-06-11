@@ -54,6 +54,32 @@ public class QuestionRepository
 		return j;
 	}
 	
+	public static List<Question> random3Questions(Theme theme)
+	{
+		List<Question> listQuestions = new ArrayList<Question>();
+		try
+		{
+			Session session = HibernateUtil.currentSession();
+			Query query = session.createQuery("FROM Question WHERE theme = :theme ORDER BY RAND() LIMIT 3");
+			query.setParameter("theme", theme.getId());
+			
+			Iterator<Question> questions = query.iterate();
+			
+			while(questions.hasNext())
+			{
+				listQuestions.add((Question)questions.next());
+			}
+			
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return listQuestions;
+	}
+	
 	public static void save(Question question)
 	{
 		Transaction tx = null;

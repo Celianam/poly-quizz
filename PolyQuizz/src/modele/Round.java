@@ -20,5 +20,16 @@ public class Round extends BaseRound {
 		super(_id);
 	}
 
+	/**
+	 * Constructor for required fields
+	 */
+	public Round (
+		java.lang.Integer _id,
+		modele.Partie _partie) {
+
+		super (
+			_id,
+			_partie);
+	}
 /*[CONSTRUCTOR MARKER END]*/
 }

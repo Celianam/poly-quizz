@@ -54,6 +54,31 @@ public class ThemeRepository
 		return j;
 	}
 	
+	public static Theme find(String theme)
+	{
+		Theme j = null;
+		try
+		{
+			Session session = HibernateUtil.currentSession();
+			String hql = "FROM Theme "  + 
+            	 	 	"WHERE nom = :nom ";
+			Query query = session.createQuery(hql);
+			query.setParameter("nom", theme);
+		
+			if(query.list().size() == 1)
+			{
+				j = (Theme)query.list().get(0);
+			}
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return j;
+	}
+	
 	public static void save(Theme theme)
 	{
 		Transaction tx = null;
