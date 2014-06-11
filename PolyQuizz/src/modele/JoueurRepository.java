@@ -63,7 +63,11 @@ public class JoueurRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from Joueur where pseudo = '" + pseudo + "'");
+			String hql = "from Joueur "  + 
+	             	 	 "where pseudo = :pseudo ";
+			Query query = session.createQuery(hql);
+			query.setParameter("pseudo", pseudo);
+			
 			exist = (query.list().size() == 1);
 			HibernateUtil.closeSession();
 		}
@@ -74,7 +78,7 @@ public class JoueurRepository
 		return exist;
 	}
 	
-	public static boolean exist(String pseudo, byte[] mdp)
+	public static boolean exist(String pseudo, byte[] mdp) throws Exception
 	{
 		boolean exist = false;
 		
@@ -89,6 +93,11 @@ public class JoueurRepository
 			query.setParameter("mdp", getHash(mdp));
 			
 			exist = (query.list().size() == 1);
+			
+			if(!exist)
+			{
+				throw new Exception("Pseudo / Mot de passe incorrect");
+			}
 			HibernateUtil.closeSession();
 		}
 		catch(HibernateException e)

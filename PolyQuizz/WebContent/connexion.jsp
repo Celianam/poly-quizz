@@ -7,8 +7,10 @@
 <% 
 	String pseudo = request.getParameter("exampleInputPseudo");
 	String mdp = request.getParameter("exampleInputPassword1");
-	String excepPseudo = "";
+	String excepPseudo = "";	
+	String excepLogin = "";
 	String excepMDP = "";
+	
 	boolean pseudoOK = false;
 	boolean mdpOK = false;
 	boolean login = false;
@@ -36,9 +38,18 @@
 	// Vérifier la correspondance dans la BDD //
 	//
 	//*
-	if (pseudo != null && mdp != null)
+	if (pseudo != null && mdp != null && pseudo != "" && mdp != "")
 	{
-		login = JoueurRepository.exist(pseudo, mdp.getBytes());
+		try
+		{
+			JoueurRepository.exist(pseudo, mdp.getBytes());
+			login = true;
+		}
+		catch(Exception e)
+		{
+			excepLogin = e.getMessage();
+		}
+		
 	}
 	//*/
 	
@@ -69,30 +80,38 @@
       <!-- Barre de navigation -->
       <jsp:include page="menu.jsp" />
       <!-- Page de Connexion : -->
-<div class="col-md-4 col-md-offset-4">
-    <div class="panel panel-default">
-  <div class="panel-heading"><h3 class="panel-title"><strong>Connexion </strong></h3></div>
-  <div class="panel-body">
-   <form role="form" action="connexion.jsp" method="post">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Pseudo</label>
-    <input type="text" class="form-control" style="border-radius:0px" name="exampleInputPseudo" placeholder="Entrer votre pseudo">
-    &nbsp;
-    <span style="color:red""><%= excepPseudo %></span>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" style="border-radius:0px" name="exampleInputPassword1" placeholder="Password">
-    &nbsp;
-    <span style="color:red"><%= excepMDP %></span>
-    
-  </div>
-  <button type="submit" class="btn btn-sm btn-default">Sign in</button>
-</form>
-  </div>
-</div>
-</div>
-</div>
- 		
-  </body>
+		<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+  				<div class="panel-heading"><h3 class="panel-title"><strong>Connexion </strong></h3>
+  					
+  				</div>
+  
+  				<div class="panel-body">
+				   	<form role="form" action="connexion.jsp" method="post">
+				   
+				  		<div class="form-group">
+						    <label for="exampleInputEmail1">Pseudo</label>
+						    <input type="text" class="form-control" style="border-radius:0px" name="exampleInputPseudo" placeholder="Entrer votre pseudo">
+						    &nbsp;
+						    <span style="color:red"><%= excepPseudo %></span>
+				  		</div>
+				  		<div class="form-group">
+						    <label for="exampleInputPassword1">Password</label>
+						    <input type="password" class="form-control" style="border-radius:0px" name="exampleInputPassword1" placeholder="Password">
+						    &nbsp;
+						    <span style="color:red"><%= excepMDP %></span>
+				    
+				    
+  						</div>
+  						
+  						<div>
+  							<span style="color:red"><%= excepLogin %></span>
+  						</div>
+  						<button type="submit" class="btn btn-sm btn-default">Sign in</button>
+					</form>
+  				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
