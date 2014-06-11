@@ -14,7 +14,7 @@
       Mon compte <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li><a href="#">Changer mot de passe</a></li>
+      <li><a href="pswd_change.jsp">Changer mot de passe</a></li>
 
     </ul>
   </li>
