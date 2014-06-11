@@ -5,8 +5,8 @@
       Jeu <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li><a href="invitation.jsp">Lancer une invitation</a></li>
-      <li><a href="#">Invitation recue <span class="badge">2</span></a></li>
+      <li><a href="invitation.jsp">Invitations <span class="badge">2</span></a></li>
+      <li><a href="#">Historique de jeu</a></li>
     </ul>
   </li>
   <li class="dropdown">
@@ -15,7 +15,7 @@
     </a>
     <ul class="dropdown-menu">
       <li><a href="#">Changer mot de passe</a></li>
-      <li><a href="#">Historique de jeu</a></li>
+
     </ul>
   </li>
 </ul>
