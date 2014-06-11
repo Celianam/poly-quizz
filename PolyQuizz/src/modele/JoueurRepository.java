@@ -63,7 +63,7 @@ public class JoueurRepository
 		update(j2);
 	}
 	
-	public static void accept(Joueur j1, Joueur j2)
+	public static void removeInvitation(Joueur j1, Joueur j2)
 	{
 		boolean ok = j1.getInvitations().remove(j2);
 		if(ok)
