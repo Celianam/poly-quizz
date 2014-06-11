@@ -41,7 +41,7 @@
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge-bleu">3</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-vert">3</span> <span class="badge-rouge">1</span></center></td>  
           </tr>  
           <tr>  
             <td><center>Giovanny</center></td>  
@@ -51,7 +51,7 @@
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-remove"></span></center></td>  
-            <td><center><span class="badge">2</span> <span class="badge">0</span></center></td>  
+            <td><center><span class="badge-vert">2</span> <span class="badge-rouge">0</span></center></td>  
           </tr>  
           <tr>  
             <td><center>Francine</center></td>  
@@ -61,7 +61,7 @@
 				</div>
             </center></td>   
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">4</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-vert">4</span> <span class="badge-rouge">1</span></center></td>  
           </tr>  
           <tr>  
             <td><center>Stephanie</center></td>  
@@ -71,7 +71,7 @@
 				</div>
             </center></td>   
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">4</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-vert">4</span> <span class="badge-rouge">1</span></center></td>  
           </tr> 
           <tr>  
             <td><center>Celine</center></td>  
@@ -81,7 +81,7 @@
 				</div>
             </center></td>   
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">4</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-vert">4</span> <span class="badge-rouge">1</span></center></td>  
           </tr> 
         </tbody>  
       </table>
