@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ page import="misc.FormValidation" %>
+<%@ page import="controle.FormValidation" %>
 <%@ page import="modele.JoueurRepository" %>
     
 <% 
-	String pseudo = request.getParameter("exampleInputPseudo");
-	String mdp = request.getParameter("exampleInputPassword1");
+	String pseudo = request.getParameter("InputPseudo");
+	String mdp = request.getParameter("InputPassword");
 	String excepPseudo = "";	
 	String excepLogin = "";
 	String excepMDP = "";
@@ -34,13 +34,9 @@
 			excepMDP = e.getMessage();
 		}
 	}
-	
-	// Vérifier la correspondance dans la BDD //
-	//
-	//*
 	if (pseudo != null && mdp != null && pseudo != "" && mdp != "")
 	{
-		try
+		/* try
 		{
 			JoueurRepository.exist(pseudo, mdp.getBytes());
 			login = true;
@@ -48,16 +44,23 @@
 		catch(Exception e)
 		{
 			excepLogin = e.getMessage();
-		}
+		} */
 		
 	}
-	//*/
-	
-	// Si joueur reconnu, redirection page joueur
-	if(pseudoOK && mdpOK && login) {
+	if(pseudoOK && mdpOK &&login)
+	{
 		session.setAttribute("joueur", pseudo);
 		response.sendRedirect("/PolyQuizz/Connected_Zone/index.jsp");
 	}
+	/* // Si joueur reconnu, redirection page joueur
+	String nomJoueur = request.getAttribute("CHAMP_PSEUDO");
+	if(nomJoueur != null)
+	{
+		System.out.println(nomJoueur);
+		session.setAttribute("joueur", nomJoueur);
+    	response.sendRedirect("/PolyQuizz/Connected_Zone/index.jsp");
+    } */
+    
 	
 	
 %>
@@ -90,22 +93,22 @@
 				   	<form role="form" action="connexion.jsp" method="post">
 				   
 				  		<div class="form-group">
-						    <label for="exampleInputEmail1">Pseudo</label>
-						    <input type="text" class="form-control" style="border-radius:0px" name="exampleInputPseudo" placeholder="Entrer votre pseudo">
+						    <label for="InputPseudo">Pseudo</label>
+						    <input type="text" class="form-control" style="border-radius:0px" name="InputPseudo" placeholder="Entrer votre pseudo">
 						    &nbsp;
-						    <span style="color:red"><%= excepPseudo %></span>
+						    <span style="color:red"><%=excepPseudo%></span>
 				  		</div>
 				  		<div class="form-group">
-						    <label for="exampleInputPassword1">Password</label>
-						    <input type="password" class="form-control" style="border-radius:0px" name="exampleInputPassword1" placeholder="Password">
+						    <label for="InputPassword">Password</label>
+						    <input type="password" class="form-control" style="border-radius:0px" name="InputPassword" placeholder="Password">
 						    &nbsp;
-						    <span style="color:red"><%= excepMDP %></span>
+						    <span style="color:red"><%=excepMDP%></span>
 				    
 				    
   						</div>
   						
   						<div>
-  							<span style="color:red"><%= excepLogin %></span>
+  							<span style="color:red"><%=excepLogin%></span>
   						</div>
   						<button type="submit" class="btn btn-sm btn-default">Sign in</button>
 					</form>

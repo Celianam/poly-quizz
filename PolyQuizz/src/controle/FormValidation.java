@@ -1,4 +1,4 @@
-package misc;
+package controle;
 
 import modele.Joueur;
 import modele.JoueurRepository;
@@ -56,14 +56,14 @@ public class FormValidation {
     
     public static void ajoutNouvelUtilisateur(String pseudo, String motDePasse) throws Exception
     {
-    	Joueur j = new Joueur();
-    	j.setPseudo(pseudo);
-    	j.setMdp(motDePasse.getBytes());
-    	boolean sauvegarde = JoueurRepository.save(j);
-    	if(sauvegarde == false)
-    	{
-    		throw new Exception("Ce pseudo n'est pas disponible");  	
-    	}
+//    	Joueur j = new Joueur();
+//    	j.setPseudo(pseudo);
+//    	j.setMdp(motDePasse.getBytes());
+//    	boolean sauvegarde = JoueurRepository.save(j);
+//    	if(sauvegarde == false)
+//    	{
+//    		throw new Exception("Ce pseudo n'est pas disponible");  	
+//    	}
     	
     }
 
