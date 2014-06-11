@@ -11,20 +11,23 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class ThemeRepository 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class JoueurRepository 
 {
-	public static List<Theme> findAll()
+	public static List<Joueur> findAll()
 	{
-		List<Theme> listThemes = new ArrayList<Theme>();
+		List<Joueur> listJoueurs = new ArrayList<Joueur>();
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from Theme");
-			Iterator<Theme> themes = query.iterate();
+			Query query = session.createQuery("from Joueur");
+			Iterator<Joueur> joueurs = query.iterate();
 			
-			while(themes.hasNext())
+			while(joueurs.hasNext())
 			{
-				listThemes.add((Theme)themes.next());
+				listJoueurs.add((Joueur)joueurs.next());
 			}
 			
 			HibernateUtil.closeSession();
@@ -34,16 +37,16 @@ public class ThemeRepository
 			e.printStackTrace();
 		}
 		
-		return listThemes;
+		return listJoueurs;
 	}
 	
-	public static Theme find(int id)
+	public static Joueur find(int id)
 	{
-		Theme j = null;
+		Joueur j = null;
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			j = (Theme) session.load(Theme.class, id);
+			j = (Joueur) session.load(Joueur.class, id);
 			HibernateUtil.closeSession();
 		}
 		catch(HibernateException e)
@@ -54,14 +57,42 @@ public class ThemeRepository
 		return j;
 	}
 	
-	public static void save(Theme theme)
+	public static void save(Joueur joueur)
+	{
+		byte[] uniqueKey = joueur.getMdp();
+		Transaction tx = null;
+		try
+		{
+			joueur.setMdp(MessageDigest.getInstance("MD5").digest(uniqueKey));
+			
+			Session session = HibernateUtil.currentSession();
+			tx = session.beginTransaction();
+			session.save(joueur);
+			tx.commit();
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			if(tx != null)
+			{
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}
+		catch (NoSuchAlgorithmException e1) 
+		{
+			e1.printStackTrace();
+		}
+	}
+	
+	public static void update(Joueur joueur)
 	{
 		Transaction tx = null;
 		try
 		{
 			Session session = HibernateUtil.currentSession();
 			tx = session.beginTransaction();
-			session.save(theme);
+			session.update(joueur);
 			tx.commit();
 			HibernateUtil.closeSession();
 		}
@@ -75,35 +106,14 @@ public class ThemeRepository
 		}
 	}
 	
-	public static void update(Theme theme)
+	public static void delete(Joueur joueur)
 	{
 		Transaction tx = null;
 		try
 		{
 			Session session = HibernateUtil.currentSession();
 			tx = session.beginTransaction();
-			session.update(theme);
-			tx.commit();
-			HibernateUtil.closeSession();
-		}
-		catch(HibernateException e)
-		{
-			if(tx != null)
-			{
-				tx.rollback();
-			}
-			e.printStackTrace();
-		}
-	}
-	
-	public static void delete(Theme theme)
-	{
-		Transaction tx = null;
-		try
-		{
-			Session session = HibernateUtil.currentSession();
-			tx = session.beginTransaction();
-			session.delete(theme);
+			session.delete(joueur);
 			tx.commit();
 			HibernateUtil.closeSession();
 		}

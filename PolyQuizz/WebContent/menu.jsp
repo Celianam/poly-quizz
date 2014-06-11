@@ -12,15 +12,6 @@
             <ul class="nav">
               <li class="active"><a href="connexion.jsp">Connexion</a></li>
               <li><a href="inscription.jsp">Inscription</a></li>
-              <!-- Menu déroulant -->
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Changement mot de passe</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Historique de jeu</a></li>
-                </ul>
-              </li>
             </ul>
           </div>
         </div>

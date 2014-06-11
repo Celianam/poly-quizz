@@ -1,5 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page import="misc.FormValidation" %>
+    
+<% 
+	String pseudo = request.getParameter("exampleInputPseudo");
+	String mdp = request.getParameter("exampleInputPassword1");
+	String excepPseudo = "";
+	String excepMDP = "";
+	boolean pseudoOK = false;
+	boolean mdpOK = false;
+	
+	if(pseudo != null) {
+		try {
+			FormValidation.validationPseudo(pseudo);
+			pseudoOK = true;
+		}
+		catch (Exception e) {
+			excepPseudo = e.getMessage();
+		}
+	}
+	if(mdp != null) {
+		try {
+			FormValidation.validationPassword(mdp);
+			mdpOK = true;
+		}
+		catch (Exception e) {
+			excepMDP = e.getMessage();
+		}
+	}
+	
+	// Vérifier la correspondance dans la BDD //
+	//
+	//
+	
+	
+	// Si joueur reconnu, redirection page joueur
+	if(pseudoOK && mdpOK) {
+		session.setAttribute("joueur", pseudo);
+		response.sendRedirect("/PolyQuizz/testConnexionOK.jsp");
+	}
+	
+	
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,14 +66,19 @@
     <div class="panel panel-default">
   <div class="panel-heading"><h3 class="panel-title"><strong>Connexion </strong></h3></div>
   <div class="panel-body">
-   <form role="form">
+   <form role="form" action="connexion.jsp" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Pseudo</label>
-    <input type="email" class="form-control" style="border-radius:0px" id="exampleInputPseudo" placeholder="Entrer votre pseudo">
+    <input type="text" class="form-control" style="border-radius:0px" name="exampleInputPseudo" placeholder="Entrer votre pseudo">
+    &nbsp;
+    <span style="color:red""><%= excepPseudo %></span>
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password <a href="/sessions/forgot_password">(forgot password)</a></label>
-    <input type="password" class="form-control" style="border-radius:0px" id="exampleInputPassword1" placeholder="Password">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" style="border-radius:0px" name="exampleInputPassword1" placeholder="Password">
+    &nbsp;
+    <span style="color:red"><%= excepMDP %></span>
+    
   </div>
   <button type="submit" class="btn btn-sm btn-default">Sign in</button>
 </form>
