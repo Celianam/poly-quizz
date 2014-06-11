@@ -78,6 +78,12 @@ if(motDePasse != null && motDePasse != "" && confirmation != null && confirmatio
 <!-- <<<<<<< HEAD
  -->      
       <!-- Formulaire d'inscription -->
+      <div class="panel panel-default">
+  				<div class="panel-heading"><h3 class="panel-title"><strong>Inscription </strong></h3>
+  					
+  				</div>
+  
+  				<div class="panel-body">
       <form role="form" action="inscription" method="post">
       <h2>Cr�ation de votre compte joueur</h2><br/>
 	      <div class="form-horizontal" role="form">
@@ -113,7 +119,8 @@ if(motDePasse != null && motDePasse != "" && confirmation != null && confirmatio
 	</div>
     </div>
     </form>
-    
+    </div>
+    </div>
     <!-- Intégration de la libraire jQuery -->
     <script src="Bootstrap/js/jquery-1.11.1.min.js"></script>
     <!-- Intégration de la libraire de composants du Bootstrap -->
