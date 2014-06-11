@@ -13,12 +13,18 @@
     <link href="../Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 </head>
 <body>
-<!-- Conteneur principal -->
     <div class="container">
-      
-      <!-- Barre de navigation -->
-	 <jsp:include page="menu.jsp" />
-     <center></center><img src="../img/accueil.jpg"/></center>
+      <jsp:include page="menu.jsp" />
+	      <!-- Barre de navigation -->
+		 
+		 <div class="row-fluid">
+			<ul class="list-group">
+			    <li class="list-group-item">Toi vs Giovanny <span class="badge">Round 2</span></li>
+			    <li class="list-group-item">Toi vs Aurélien <span class="badge">Round 0</span></li>        
+			    <li class="list-group-item">Toi vs Stéphanie <span class="badge">Round 0</span></li>
+			    <li class="list-group-item">Toi vs Francine <span class="badge">Round 5</span></li>
+			</ul>
+		</div>
     </div>
     
     <!-- IntÃ©gration de la libraire jQuery -->

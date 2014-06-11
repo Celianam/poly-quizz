@@ -52,11 +52,19 @@ if(motDePasse != null && motDePasse != "" && confirmation != null && confirmatio
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- <<<<<<< HEAD -->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>test</title>
     <!-- On ouvre la fenetre a  la largeur de l'ecran -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Intégration du CSS Bootstrap -->
+<!-- =======
+    <meta charset="utf-8">
+    This file has been downloaded from Bootsnipp.com. Enjoy!
+    <title>Enregistrement</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+>>>>>>> branch 'master' of https://github.com/Celianam/poly-quizz -->
     <link href="Bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
     <!-- Intégration du CSS responsive Bootstrap -->
     <link href="Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -67,7 +75,8 @@ if(motDePasse != null && motDePasse != "" && confirmation != null && confirmatio
       
       <!-- Barre de navigation -->
       <jsp:include page="menu.jsp" />
-      
+<!-- <<<<<<< HEAD
+ -->      
       <!-- Formulaire d'inscription -->
       <form role="form" action="inscription" method="post">
       <h2>Cr�ation de votre compte joueur</h2><br/>
@@ -109,5 +118,30 @@ if(motDePasse != null && motDePasse != "" && confirmation != null && confirmatio
     <script src="Bootstrap/js/jquery-1.11.1.min.js"></script>
     <!-- Intégration de la libraire de composants du Bootstrap -->
     <script src="Bootstrap/js/bootstrap.min.js"></script>
+<!-- =======
+      Page de Connexion :
+<div class="col-md-4 col-md-offset-4">
+    <div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title"><strong>Enregistrement </strong></h3></div>
+  <div class="panel-body">
+   <form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Pseudo</label>
+    <input type="email" class="form-control" style="border-radius:0px" id="exampleInputPseudo" placeholder="Entrer votre pseudo">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" style="border-radius:0px" id="exampleInputPassword1" placeholder="Password">
+        <label for="exampleInputPassword1">Password Confirmation</label>
+    <input type="password" class="form-control" style="border-radius:0px" id="exampleInputPassword2" placeholder="Confirmation Password">
+  </div>
+  <button type="submit" class="btn btn-sm btn-default">Sign in</button>
+</form>
+  </div>
+</div>
+</div>
+</div>
+ 		
+>>>>>>> branch 'master' of https://github.com/Celianam/poly-quizz -->
   </body>
 </html>
