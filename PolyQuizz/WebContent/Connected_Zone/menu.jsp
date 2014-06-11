@@ -15,6 +15,7 @@
     </a>
     <ul class="dropdown-menu">
       <li><a href="pswd_change.jsp">Changer mot de passe</a></li>
+      <li><a href="pswd_change.jsp">Deconnexion</a></li>
 
     </ul>
   </li>
