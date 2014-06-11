@@ -9,25 +9,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- IntÃ©gration du CSS Bootstrap -->
     <link href="../Bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
-
     <!-- IntÃ©gration du CSS responsive Bootstrap -->
     <link href="../Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 </head>
 <body>
-<!-- Conteneur principal -->
     <div class="container">
-      
-      <!-- Barre de navigation -->
-      <div>
-	 <jsp:include page="menu.jsp" />
-	 </div>
-	 <div class="row">
-		<ul class="list-group">
-		    <li class="list-group-item">Pictures <span class="badge">Round 2</span></li>
-		    <li class="list-group-item">Documents <span class="badge">Round 0</span></li>        
-		    <li class="list-group-item">Music <span class="badge">Round 0</span></li>
-		    <li class="list-group-item">Videos <span class="badge">Round 5</span></li>
-		</ul>
+      <jsp:include page="menu.jsp" />
+	      <!-- Barre de navigation -->
+		 
+		 <div class="row-fluid">
+			<ul class="list-group">
+			    <li class="list-group-item">Toi vs Giovanny <span class="badge">Round 2</span></li>
+			    <li class="list-group-item">Toi vs Aurélien <span class="badge">Round 0</span></li>        
+			    <li class="list-group-item">Toi vs Stéphanie <span class="badge">Round 0</span></li>
+			    <li class="list-group-item">Toi vs Francine <span class="badge">Round 5</span></li>
+			</ul>
 		</div>
     </div>
     

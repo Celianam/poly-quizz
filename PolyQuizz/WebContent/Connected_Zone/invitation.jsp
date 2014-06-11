@@ -22,12 +22,7 @@
 	 <jsp:include page="menu.jsp" />
 	 </div>
 	 <div class="row">
-		<ul class="list-group">
-		    <li class="list-group-item">Pictures <span class="badge">Round 2</span></li>
-		    <li class="list-group-item">Documents <span class="badge">Round 0</span></li>        
-		    <li class="list-group-item">Music <span class="badge">Round 0</span></li>
-		    <li class="list-group-item">Videos <span class="badge">Round 5</span></li>
-		</ul>
+		
 		</div>
     </div>
     
