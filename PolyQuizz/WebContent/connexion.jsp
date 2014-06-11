@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ page import="misc.FormValidation" %>
+<%@ page import="controle.FormValidation" %>
 <%@ page import="modele.JoueurRepository" %>
+<%@ page import="modele.Joueur" %>
+
     
 <% 
 	String pseudo = request.getParameter("exampleInputPseudo");
@@ -10,12 +12,12 @@
 	String excepPseudo = "";	
 	String excepLogin = "";
 	String excepMDP = "";
-	
+
 	boolean pseudoOK = false;
 	boolean mdpOK = false;
 	boolean login = false;
-	
-	
+
+
 	if(pseudo != null) {
 		try {
 			FormValidation.validationPseudo(pseudo);
@@ -34,7 +36,7 @@
 			excepMDP = e.getMessage();
 		}
 	}
-	
+
 	// Vérifier la correspondance dans la BDD //
 	//
 	//*
@@ -49,17 +51,18 @@
 		{
 			excepLogin = e.getMessage();
 		}
-		
+
 	}
 	//*/
-	
+
 	// Si joueur reconnu, redirection page joueur
 	if(pseudoOK && mdpOK && login) {
-		session.setAttribute("joueur", pseudo);
+		Joueur joueur = JoueurRepository.find(pseudo);
+		session.setAttribute("joueur", joueur);
 		response.sendRedirect("/PolyQuizz/Connected_Zone/index.jsp");
 	}
-	
-	
+
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -80,15 +83,13 @@
       <!-- Barre de navigation -->
       <jsp:include page="menu.jsp" />
       <!-- Page de Connexion : -->
-		<div class="col-md-4 col-md-offset-4">
     		<div class="panel panel-default">
   				<div class="panel-heading"><h3 class="panel-title"><strong>Connexion </strong></h3>
-  					
   				</div>
   
   				<div class="panel-body">
 				   	<form role="form" action="connexion.jsp" method="post">
-				   
+						<h2>Connectez vous et jouez !</h2><br/>
 				  		<div class="form-group">
 						    <label for="exampleInputEmail1">Pseudo</label>
 						    <input type="text" class="form-control" style="border-radius:0px" name="exampleInputPseudo" placeholder="Entrer votre pseudo">
@@ -100,8 +101,8 @@
 						    <input type="password" class="form-control" style="border-radius:0px" name="exampleInputPassword1" placeholder="Password">
 						    &nbsp;
 						    <span style="color:red"><%= excepMDP %></span>
-				    
-				    
+
+
   						</div>
   						
   						<div>
@@ -111,7 +112,6 @@
 					</form>
   				</div>
 			</div>
-		</div>
 	</div>
 </body>
 </html>

@@ -23,10 +23,11 @@
 	 </div>
 	 <!-- Liste invitations recues -->
 	 <div class="panel panel-default">
-		<div class="panel-heading"><h3 class="panel-title"><strong>Invitation recu</strong></h3></div>
+		<div class="panel-heading"><h3 class="panel-title"><strong>Invitation(s) recu(s)</strong></h3></div>
 		<div class="panel-body">
 			<!-- LISTE DES INSCRITS POUR INVITATION : -->
 			<div class="row-fluid">
+			<div class="achievements-wrapper">
 			<table class="table table-striped">  
         <thead>  
           <tr>  
@@ -41,37 +42,60 @@
             <td><center>Aurélien</center></td>  
             <td><center>
             	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Accepter</button>
-	  				<button type="button" class="btn btn-default">Refuser</button>
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>  
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">3</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-vert">3</span> <span class="badge-rouge">1</span></center></td>  
+          </tr>  
+          <tr>  
+            <td><center>Stephanie</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>  
+				</div>
+            </center></td>  
+            <td><center><span class="glyphicon glyphicon-remove"></span></center></td>  
+            <td><center><span class="badge-vert">3</span> <span class="badge-rouge">1</span></center></td>  
+          </tr>  
+          <tr>  
+            <td><center>Celine</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>  
+				</div>
+            </center></td>  
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge-vert">3</span> <span class="badge-rouge">1</span></center></td>  
           </tr>  
           <tr>  
             <td><center>Giovanny</center></td>  
             <td><center>
             	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Accepter</button>
-	  				<button type="button" class="btn btn-default">Refuser</button>
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-remove"></span></center></td>  
-            <td><center><span class="badge">2</span> <span class="badge">0</span></center></td>  
+            <td><center><span class="badge-vert">2</span> <span class="badge-rouge">0</span></center></td>  
           </tr>  
           <tr>  
             <td><center>Francine</center></td>  
             <td><center>
             	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Accepter</button>
-	  				<button type="button" class="btn btn-default">Refuser</button>
+	  				<button class="btn btn-success">Accepter</button>
+	  				<button class="btn btn-danger">Refuser</button>
 				</div>
             </center></td>   
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">4</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-vert">4</span> <span class="badge-rouge">1</span></center></td>  
           </tr>  
         </tbody>  
       </table>
+      </div>
 			</div>
 	  </div>
 	</div>
@@ -81,6 +105,7 @@
 		<div class="panel-body">
 			<!-- LISTE DES INSCRITS POUR INVITATION : -->
 			<div class="row-fluid">
+				<div class="achievements-wrapper">
 			<table class="table table-striped">  
         <thead>  
           <tr>  
@@ -95,40 +120,58 @@
             <td><center>Aurélien</center></td>  
             <td><center>
             	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Inviter</button>
+	  				<button class="btn btn-primary">Inviter</button>
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">3</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-vert">3</span> <span class="badge-rouge">1</span></center></td>  
           </tr>  
           <tr>  
             <td><center>Giovanny</center></td>  
             <td><center>
             	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Inviter</button>
+	  				<button class="btn btn-primary">Inviter</button>
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-remove"></span></center></td>  
-            <td><center><span class="badge">2</span> <span class="badge">0</span></center></td>  
+            <td><center><span class="badge-vert">2</span> <span class="badge-rouge">0</span></center></td>  
           </tr>  
           <tr>  
             <td><center>Francine</center></td>  
             <td><center>
             	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Inviter</button>
+	  				<button class="btn btn-primary">Inviter</button>
 				</div>
             </center></td>   
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">4</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-vert">4</span> <span class="badge-rouge">1</span></center></td>  
           </tr>  
+          <tr>  
+            <td><center>Stephanie</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-primary">Inviter</button>
+				</div>
+            </center></td>   
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge-vert">4</span> <span class="badge-rouge">1</span></center></td>  
+          </tr> 
+          <tr>  
+            <td><center>Celine</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-primary">Inviter</button>
+				</div>
+            </center></td>   
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge-vert">4</span> <span class="badge-rouge">1</span></center></td>  
+          </tr> 
         </tbody>  
       </table>
+      		</div>
 			</div>
 	  </div>
 	</div>
-
-
-
     </div>
     
     <!-- IntÃ©gration de la libraire jQuery -->

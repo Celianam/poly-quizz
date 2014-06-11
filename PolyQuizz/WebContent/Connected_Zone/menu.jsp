@@ -5,7 +5,7 @@
       Jeu <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li><a href="invitation.jsp">Invitations <span class="badge">2</span></a></li>
+      <li><a href="invitation.jsp">Invitations <span class="badge-bleu">5</span></a></li>
       <li><a href="historic.jsp">Historique de jeu</a></li>
     </ul>
   </li>
