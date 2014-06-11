@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ page import="misc.FormValidation" %>
+<%@ page import="modele.JoueurRepository" %>
     
 <% 
 	String pseudo = request.getParameter("exampleInputPseudo");
@@ -10,6 +11,8 @@
 	String excepMDP = "";
 	boolean pseudoOK = false;
 	boolean mdpOK = false;
+	boolean login = false;
+	
 	
 	if(pseudo != null) {
 		try {
@@ -32,11 +35,15 @@
 	
 	// Vérifier la correspondance dans la BDD //
 	//
-	//
-	
+	//*
+	if (pseudo != null && mdp != null)
+	{
+		login = JoueurRepository.exist(pseudo, mdp.getBytes());
+	}
+	//*/
 	
 	// Si joueur reconnu, redirection page joueur
-	if(pseudoOK && mdpOK) {
+	if(pseudoOK && mdpOK && login) {
 		session.setAttribute("joueur", pseudo);
 		response.sendRedirect("/PolyQuizz/Connected_Zone/index.jsp");
 	}
