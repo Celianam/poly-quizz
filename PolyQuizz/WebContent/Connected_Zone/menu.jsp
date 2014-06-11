@@ -17,7 +17,7 @@
                 <ul class="dropdown-menu">
                   <li><a href="#">Lancer une invitation</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Invitation recue</a></li>
+                  <li><a href="#">Invitation recue <span class="badge">0</span></a></li>
                 </ul>
               </li>
               <!-- Menu déroulant -->
