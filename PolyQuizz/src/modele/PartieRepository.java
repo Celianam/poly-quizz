@@ -116,4 +116,53 @@ public class PartieRepository
 			e.printStackTrace();
 		}
 	}
+	
+	public static List<Partie> rencontre(int joueurCourant, int joueurListe)
+	{
+		boolean exist = false;
+		List<Partie> listParties = new ArrayList<Partie>();
+		
+		try
+		{
+			Session session = HibernateUtil.currentSession();
+			String hql = "from Partie "  + 
+	             	 	 "where joueur1 = :joueurCourant "
+	             	 	 + "and joueur2 =:joueurListe ";
+			Query query = session.createQuery(hql);
+			query.setParameter("joueurCourant", joueurCourant);
+			query.setParameter("joueurListe", joueurListe);
+			
+			String hql2 = "from Partie "  + 
+            	 	 "where joueur1 = :joueurListe "
+            	 	 + "and joueur2 =:joueurCourant";
+			Query query2 = session.createQuery(hql2);
+			query2.setParameter("joueurCourant", joueurCourant);
+			query2.setParameter("joueurListe", joueurListe);
+			
+			if(query.list().size() == 1 || query2.list().size() == 1)
+			{
+				exist = true;
+			}
+			
+			Iterator<Partie> parties = query.iterate();
+			Iterator<Partie> parties2 = query2.iterate();
+			
+			while(parties.hasNext())
+			{
+				listParties.add((Partie)parties.next());
+			}
+			while(parties2.hasNext())
+			{
+				listParties.add((Partie)parties2.next());
+			}
+			
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		return listParties;
+	}
+		
 }

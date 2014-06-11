@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bienvenu(e) <%= session.getAttribute("joueur") %></title>
+<title>Poly'Quizz</title>
     <!-- On ouvre la fenêtre �  la largeur de l'écran -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Intégration du CSS Bootstrap -->
