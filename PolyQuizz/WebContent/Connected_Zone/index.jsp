@@ -17,14 +17,78 @@
       <jsp:include page="menu.jsp" />
 	      <!-- Barre de navigation -->
 		 
-		 <div class="row-fluid">
-			<ul class="list-group">
-			    <li class="list-group-item">Toi vs Giovanny <span class="badge">Round 2</span></li>
-			    <li class="list-group-item">Toi vs Aurélien <span class="badge">Round 0</span></li>        
-			    <li class="list-group-item">Toi vs Stéphanie <span class="badge">Round 0</span></li>
-			    <li class="list-group-item">Toi vs Francine <span class="badge">Round 5</span></li>
-			</ul>
-		</div>
+		 	<div class="panel panel-default">
+		<div class="panel-heading"><h3 class="panel-title"><strong>Inviter un joueur</strong></h3></div>
+		<div class="panel-body">
+			<!-- LISTE DES INSCRITS POUR INVITATION : -->
+			<div class="row-fluid">
+				<div class="achievements-wrapper">
+			<table class="table table-striped">  
+        <thead>  
+          <tr>  
+            <th><center>Joueur</center></th>  
+            <th><center>Reprendre</center></th>  
+            <th><center>Déjà rencontré</center></th>  
+            <th><center>Victoire / Défaite</center></th>  
+          </tr>  
+        </thead>  
+        <tbody>  
+          <tr>  
+            <td><center>Aurélien</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-primary">Reprendre</button>
+				</div>
+            </center></td>  
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge-bleu">3</span> <span class="badge">1</span></center></td>  
+          </tr>  
+          <tr>  
+            <td><center>Giovanny</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-primary">Reprendre</button>
+				</div>
+            </center></td>  
+            <td><center><span class="glyphicon glyphicon-remove"></span></center></td>  
+            <td><center><span class="badge">2</span> <span class="badge">0</span></center></td>  
+          </tr>  
+          <tr>  
+            <td><center>Francine</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-primary">Reprendre</button>
+				</div>
+            </center></td>   
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge">4</span> <span class="badge">1</span></center></td>  
+          </tr>  
+          <tr>  
+            <td><center>Stephanie</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-primary">Reprendre</button>
+				</div>
+            </center></td>   
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge">4</span> <span class="badge">1</span></center></td>  
+          </tr> 
+          <tr>  
+            <td><center>Celine</center></td>  
+            <td><center>
+            	<div class="btn-group">
+	  				<button class="btn btn-primary">Reprendre</button>
+				</div>
+            </center></td>   
+            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
+            <td><center><span class="badge">4</span> <span class="badge">1</span></center></td>  
+          </tr> 
+        </tbody>  
+      </table>
+      		</div>
+			</div>
+	  </div>
+	</div>
     </div>
     
     <!-- IntÃ©gration de la libraire jQuery -->

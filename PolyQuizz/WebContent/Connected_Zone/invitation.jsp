@@ -47,7 +47,7 @@
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">3</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-vert">3</span> <span class="badge-rouge">1</span></center></td>  
           </tr>  
           <tr>  
             <td><center>Stephanie</center></td>  
@@ -124,7 +124,7 @@
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">3</span> <span class="badge">1</span></center></td>  
+            <td><center><span class="badge-bleu">3</span> <span class="badge">1</span></center></td>  
           </tr>  
           <tr>  
             <td><center>Giovanny</center></td>  
