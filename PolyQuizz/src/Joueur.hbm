@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD//EN"
-	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="modele">
 	<class name="Joueur" table="joueur" lazy="false">
@@ -25,5 +25,11 @@
 			not-null="false"
 			type="string"
 		 />
+		
+		 <set name="invitations" table="invitation" lazy="false">
+		 	<key column="joueurCreateur"/>
+		 	<many-to-many class="Joueur" unique="true" column="joueurEnAttente" />
+		 </set>
+		
 	</class>
 </hibernate-mapping>

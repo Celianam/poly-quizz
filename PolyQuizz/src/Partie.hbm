@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD//EN"
-	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="modele">
 	<class name="Partie" table="partie" lazy="false">
@@ -19,12 +19,11 @@
 			not-null="false"
 			type="integer"
 		 />
-		<property
+		<many-to-one
 			column="joueur1"
-			length="10"
 			name="Joueur1"
-			not-null="false"
-			type="integer"
+			class="Joueur"
+			unique="true"
 		 />
 		<property
 			column="scoreJoueur1"
@@ -33,30 +32,28 @@
 			not-null="false"
 			type="integer"
 		 />
-		<property
+		<many-to-one
 			column="roundCourant"
-			length="10"
 			name="RoundCourant"
-			not-null="false"
-			type="integer"
+			class="Round"
+			unique="true"
 		 />
-		<property
+		<many-to-one
 			column="joueurCourant"
-			length="10"
 			name="JoueurCourant"
-			not-null="false"
-			type="integer"
+			class="Joueur"
+			unique="true"
 		 />
-		<property
+		<many-to-one
 			column="joueur2"
-			length="10"
 			name="Joueur2"
-			not-null="false"
-			type="integer"
+			class="Joueur"
 		 />
-		 <set name="rounds" inverse="true">
+		 
+		 <set name="rounds">
 		 	<key column="partie"/>
-		 	<one-to-many class="Round"/>
+		 	<many-to-many class="Round" unique="true" column="id" />
 		 </set>
+		 
 	</class>
 </hibernate-mapping>
