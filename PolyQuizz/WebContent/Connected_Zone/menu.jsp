@@ -10,7 +10,7 @@
           <!-- Structure du menu -->
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Se déconnecter</a></li>
+              <li><a href="#">Se déconnecter</a></li>
 			<!-- Menu dÃ©roulant -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Le Jeu <b class="caret"></b></a>

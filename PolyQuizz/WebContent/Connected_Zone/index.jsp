@@ -18,7 +18,13 @@
       
       <!-- Barre de navigation -->
 	 <jsp:include page="menu.jsp" />
-     <center></center><img src="../img/accueil.jpg"/></center>
+     <div class="list-group">
+ 	 <a href="#" class="list-group-item active">Round 2 VS GIOVANNY</a>
+	 <a href="#" class="list-group-item">Round 1 VS Celine</a>
+	 <a href="#" class="list-group-item">Round 1 VS Stephanie</a>
+	 <a href="#" class="list-group-item">Round 1 VS Vaik</a>
+	 <a href="#" class="list-group-item">Round 1 VS Francine</a>
+</div>
     </div>
     
     <!-- Intégration de la libraire jQuery -->
