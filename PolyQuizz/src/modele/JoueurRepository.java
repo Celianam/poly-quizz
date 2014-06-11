@@ -57,6 +57,32 @@ public class JoueurRepository
 		return j;
 	}
 	
+	public static Joueur find(String pseudo)
+	{
+		boolean exist = false;
+		Joueur j = null;
+		try
+		{
+			Session session = HibernateUtil.currentSession();
+			String hql = "from Joueur "  + 
+	             	 	 "where pseudo = :pseudo ";
+			Query query = session.createQuery(hql);
+			query.setParameter("pseudo", pseudo);
+			
+			if(query.list().size() == 1)
+			{
+				j = (Joueur)query.list().get(0);
+			}
+			
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		return j;
+	}
+	
 	public static boolean exist(String pseudo)
 	{
 		boolean exist = false;

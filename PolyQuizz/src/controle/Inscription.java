@@ -61,6 +61,11 @@ public class Inscription extends HttpServlet {
         		erreurs.put( CHAMP_PSEUDO, e.getMessage());
         	}
         }
+        if(erreurs.isEmpty())
+        {
+    		response.sendRedirect("/PolyQuizz/connexion.jsp");
+    		return;
+        }
         else 
         {
         	resultat = "Echec de l'inscription";
