@@ -13,9 +13,9 @@
 			<generator class="native" />
 		</id>
 		
-		<many-to-one class="Partie" name="partie" column="partie"/>
+		<many-to-one class="Partie" name="partie" column="partie" not-null="true"/>
 		
-		<set name="questions" table="round_question">
+		<set name="questions" table="round_question" lazy="false">
 		 	<key column="round"/>
 		 	<many-to-many class="Question" column="question"/>
 		</set>

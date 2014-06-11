@@ -61,7 +61,8 @@ public class PartieRepository
 		{
 			Session session = HibernateUtil.currentSession();
 			tx = session.beginTransaction();
-			session.save(partie);
+			int id = (Integer)session.save(partie);
+			partie.setId(id);
 			tx.commit();
 			HibernateUtil.closeSession();
 		}

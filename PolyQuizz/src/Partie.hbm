@@ -50,9 +50,9 @@
 			class="Joueur"
 		 />
 		 
-		 <set name="rounds">
+		 <set name="rounds" lazy="false" inverse="true">
 		 	<key column="partie"/>
-		 	<many-to-many class="Round" unique="true" column="id" />
+		 	<one-to-many class="Round"/>
 		 </set>
 		 
 	</class>

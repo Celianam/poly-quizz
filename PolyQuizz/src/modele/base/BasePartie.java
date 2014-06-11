@@ -199,9 +199,9 @@ public abstract class BasePartie  implements Serializable {
 		this._rounds = _rounds;
 	}
 	
-	public void addToRounds (Round obj) {
+	public void addToRounds (Round r) {
 		if (null == this._rounds) this._rounds = new java.util.HashSet<Round>();
-		this._rounds.add(obj);
+		this._rounds.add(r);
 	}
 
 
