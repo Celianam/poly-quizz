@@ -63,7 +63,11 @@ public class JoueurRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from Joueur where pseudo = '" + pseudo + "'");
+			String hql = "from Joueur "  + 
+	             	 	 "where pseudo = :pseudo ";
+			Query query = session.createQuery(hql);
+			query.setParameter("pseudo", pseudo);
+			
 			exist = (query.list().size() == 1);
 			HibernateUtil.closeSession();
 		}
