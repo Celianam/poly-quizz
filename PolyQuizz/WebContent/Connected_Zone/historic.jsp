@@ -20,6 +20,10 @@
       <!-- Barre de navigation -->
       <div>
 	 <jsp:include page="menu.jsp" />
+	       <div class="row-fluid">
+      <img class="imgAutoSize" src="../img/banniere_sous_menu.png"/>
+      </br>
+      </div>
 	 </div>
 	 <div class="row">
 	 	<h2>Historique de vos parties</h2>
