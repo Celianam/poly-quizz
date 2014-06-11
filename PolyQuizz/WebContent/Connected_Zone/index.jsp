@@ -41,7 +41,7 @@
             <td><center>Aurélien</center></td>  
             <td><center>
             	<div class="btn-group">
-	  				<button class="btn btn-primary" href="Game_Zone/roundplay.jsp">Reprendre</button>
+	  				<a href="Game_Zone/roundplay.jsp"><button class="btn btn-primary">Reprendre</button></a>
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
@@ -56,7 +56,7 @@
             </center></td>  
             <td><center><span class="glyphicon glyphicon-remove"></span></center></td>  
             <td><center><span class="badge-bleu">0</span></center></td>  
-          </tr>  
+          </tr>
           <tr>  
             <td><center>Francine</center></td>  
             <td><center>

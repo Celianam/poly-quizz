@@ -20,62 +20,52 @@
       <!-- Barre de navigation -->
      <div>
 	 	<jsp:include page="../menu.jsp" />
-	 </div>
+	 </div><br/><br/>
 	 
 	<!-- Question -->
 	<div class="jumbotron">
-		<h1>Hello, world!</h1>
-  		<p>...</p>
-  		<p><a class="btn btn-primary btn-lg">Learn more</a></p>
+		<h2>Question 1</h2>
+  		<p>Combien j'ai sur mon compte en banque ?</p>
+  		<p>0/0</p>
 	</div>
 
 
-	 <!-- Liste des joueurs -->
+	 <!-- Réponses -->
 	<div class="panel panel-default">
-		<div class="panel-heading"><h3 class="panel-title"><strong>Inviter un joueur</strong></h3></div>
+		<div class="panel-heading"><h3 class="panel-title"><strong>Réponses</strong></h3></div>
 		<div class="panel-body">
 			<!-- LISTE DES INSCRITS POUR INVITATION : -->
 			<div class="row-fluid">
 			<table class="table table-striped">  
-        <thead>  
-          <tr>  
-            <th><center>Joueur</center></th>  
-            <th><center>Action</center></th>  
-            <th><center>Déjà rencontré</center></th>  
-            <th><center>Victoire / Défaite</center></th>  
-          </tr>  
-        </thead>  
         <tbody>  
           <tr>  
-            <td><center>Aurélien</center></td>  
+<!--             <td><center>10000</center></td>
+            <td><center>15000</center></td>
+            <td><center>100</center></td>
+            <td><center>Plus rien, je suis pauvre.</center></td> 
+          </tr> -->  
+          <tr>  
             <td><center>
             	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Inviter</button>
+	  				<button type="button" class="btn btn-default">10000</button>
+				</div>
+            </center></td>
+            <td><center>
+            	<div class="btn-group">
+	  				<button type="button" class="btn btn-default">15000</button>
+				</div>
+            </center></td>
+            <td><center>
+            	<div class="btn-group">
+	  				<button type="button" class="btn btn-default">100</button>
+				</div>
+            </center></td>
+            <td><center>
+            	<div class="btn-group">
+	  				<button type="button" class="btn btn-default">Plus rien, je suis pauvre.</button>
 				</div>
             </center></td>  
-            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">3</span> <span class="badge">1</span></center></td>  
-          </tr>  
-          <tr>  
-            <td><center>Giovanny</center></td>  
-            <td><center>
-            	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Inviter</button>
-				</div>
-            </center></td>  
-            <td><center><span class="glyphicon glyphicon-remove"></span></center></td>  
-            <td><center><span class="badge">2</span> <span class="badge">0</span></center></td>  
-          </tr>  
-          <tr>  
-            <td><center>Francine</center></td>  
-            <td><center>
-            	<div class="btn-group">
-	  				<button type="button" class="btn btn-default">Inviter</button>
-				</div>
-            </center></td>   
-            <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
-            <td><center><span class="badge">4</span> <span class="badge">1</span></center></td>  
-          </tr>  
+          </tr> 
         </tbody>  
       </table>
 			</div>

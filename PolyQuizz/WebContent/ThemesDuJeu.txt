@@ -1,9 +1,9 @@
 Les 6 thèmes du jeu : 
 
-Sport
-Cinéma/Séries
-Littérature (romans, théatre, mangas, BD)
-Technologie
-Actualités (culture G, fait récents)
-People
+Musique => Giovanny
+Cinéma/Séries => Vaïk
+Littérature (romans, théatre, mangas, BD) => Stéphanie
+Technologie => Aurélien
+Histoire => Francine
+Jeux-Vidéos => Céline
 
