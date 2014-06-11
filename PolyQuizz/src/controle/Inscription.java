@@ -64,6 +64,7 @@ public class Inscription extends HttpServlet {
         if(erreurs.isEmpty())
         {
     		response.sendRedirect("/PolyQuizz/connexion.jsp");
+    		return;
         }
         else 
         {
