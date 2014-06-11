@@ -74,6 +74,30 @@ public class JoueurRepository
 		return exist;
 	}
 	
+	public static boolean exist(String pseudo, byte[] mdp)
+	{
+		boolean exist = false;
+		
+		try
+		{
+			String hql = "from Joueur "  + 
+		             	 "where pseudo = :pseudo " + 
+					     "and mdp = :mdp";
+			Session session = HibernateUtil.currentSession();
+			Query query = session.createQuery(hql);
+			query.setParameter("pseudo", pseudo);
+			query.setParameter("mdp", getHash(mdp));
+			
+			exist = (query.list().size() == 1);
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		return exist;
+	}
+	
 	public static boolean save(Joueur joueur)
 	{
 		Transaction tx = null;
