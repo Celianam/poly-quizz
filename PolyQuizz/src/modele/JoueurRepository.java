@@ -57,19 +57,42 @@ public class JoueurRepository
 		return j;
 	}
 	
-	public static void save(Joueur joueur)
+	public static boolean exist(String pseudo)
 	{
-		byte[] uniqueKey = joueur.getMdp();
-		Transaction tx = null;
+		boolean exist = false;
 		try
 		{
-			joueur.setMdp(MessageDigest.getInstance("MD5").digest(uniqueKey));
-			
 			Session session = HibernateUtil.currentSession();
-			tx = session.beginTransaction();
-			session.save(joueur);
-			tx.commit();
+			Query query = session.createQuery("from Joueur where pseudo = '" + pseudo + "'");
+			exist = (query.list().size() == 1);
 			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		return exist;
+	}
+	
+	public static boolean save(Joueur joueur)
+	{
+		Transaction tx = null;
+		joueur.setMdp(getHash(joueur.getMdp()));
+		
+		try
+		{
+			if (exist(joueur.getPseudo()))
+			{
+				return false;
+			}
+			else
+			{
+				Session session = HibernateUtil.currentSession();
+				tx = session.beginTransaction();
+				session.save(joueur);
+				tx.commit();
+				HibernateUtil.closeSession();
+			}
 		}
 		catch(HibernateException e)
 		{
@@ -79,10 +102,7 @@ public class JoueurRepository
 			}
 			e.printStackTrace();
 		}
-		catch (NoSuchAlgorithmException e1) 
-		{
-			e1.printStackTrace();
-		}
+		return true;
 	}
 	
 	public static void update(Joueur joueur)
@@ -125,5 +145,18 @@ public class JoueurRepository
 			}
 			e.printStackTrace();
 		}
+	}
+	
+	public static byte[] getHash(byte[] password)
+	{
+		try 
+		{
+			return MessageDigest.getInstance("MD5").digest(password);
+		} 
+		catch (NoSuchAlgorithmException e) 
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
