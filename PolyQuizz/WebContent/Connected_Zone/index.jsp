@@ -37,7 +37,7 @@
             <td><center>Aurélien</center></td>  
             <td><center>
             	<div class="btn-group">
-	  				<button class="btn btn-primary">Reprendre</button>
+	  				<button class="btn btn-primary" href="Game_Zone/roundplay.jsp">Reprendre</button>
 				</div>
             </center></td>  
             <td><center><span class="glyphicon glyphicon-ok"></span></center></td>  
