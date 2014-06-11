@@ -20,9 +20,9 @@
       </br>
       </div>
 	 <!-- FIN DU MENU -->
-		 
+		 <h2>Vos parties en cours</h2>
 		 	<div class="panel panel-default">
-		<div class="panel-heading"><h3 class="panel-title"><strong>Vos parties en cours :</strong></h3></div>
+		<div class="panel-heading"><h3 class="panel-title"><strong>Vos quizzs</strong></h3></div>
 		<div class="panel-body">
 			<!-- LISTE DES INSCRITS POUR INVITATION : -->
 			<div class="row-fluid">
