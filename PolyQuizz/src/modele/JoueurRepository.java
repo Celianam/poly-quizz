@@ -57,6 +57,11 @@ public class JoueurRepository
 		return j;
 	}
 	
+	public static void invite(Joueur j1, Joueur j2)
+	{
+		j2.addToInvitations(j1);
+	}
+	
 	public static Joueur find(String pseudo)
 	{
 		boolean exist = false;
