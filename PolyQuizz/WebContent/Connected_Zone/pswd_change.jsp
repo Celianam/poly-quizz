@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title><%= session.getAttribute("joueur") %> - Changement de mot de passe</title>
+<title><%= session.getAttribute("joueur") %> - Modification de mot de passe</title>
     <!-- On ouvre la fenêtre �  la largeur de l'écran -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Intégration du CSS Bootstrap -->
@@ -14,12 +14,16 @@
 </head>
 <body>
     <div class="container">
-      <jsp:include page="menu.jsp" />
+      	<jsp:include page="menu.jsp" />
 	      <!-- Barre de navigation -->
 		 
 		 <div class="row-fluid">
-		 	<span>Vous n'avez plus confiance en votre mot de passe ? Changez-le ici !</span><br/><br/>
+		 	<h2>Modification de votre mot de passe</h2>
 		 </div>
+		 
+		 <div class="row-fluid">
+		 	<span>Vous n'avez plus confiance en votre mot de passe ? Changez-le ici !</span>
+		 </div><br/><br/>
 		 <div class="row-fluid">
  			<form role="form">
                <div class="row">

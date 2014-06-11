@@ -6,7 +6,7 @@
     </a>
     <ul class="dropdown-menu">
       <li><a href="invitation.jsp">Invitations <span class="badge">2</span></a></li>
-      <li><a href="#">Historique de jeu</a></li>
+      <li><a href="historic.jsp">Historique de jeu</a></li>
     </ul>
   </li>
   <li class="dropdown">
@@ -19,4 +19,3 @@
     </ul>
   </li>
 </ul>
-</br>
