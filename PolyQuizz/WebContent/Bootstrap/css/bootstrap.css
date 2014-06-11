@@ -1464,6 +1464,7 @@ th {
   border-bottom-width: 2px;
 }
 .achievements-wrapper { height: 220px; overflow: auto; }
+.wapperindex { height: 400px; overflow: auto; }
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #f9f9f9;
@@ -4353,6 +4354,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   vertical-align: baseline;
   background-color: #01B0F0;
   border-radius: 10px;
+}
+.imgAutoSize {
+	max-width:100%; max-height:100%;
 }
 .badge-rouge {
   display: inline-block;

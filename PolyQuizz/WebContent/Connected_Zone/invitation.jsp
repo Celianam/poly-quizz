@@ -20,8 +20,13 @@
       <!-- Barre de navigation -->
       <div>
 	 <jsp:include page="menu.jsp" />
+	 <div class="row-fluid">
+      <img class="imgAutoSize" src="../img/banniere_sous_menu.png"/>
+      </br>
+      </div>
 	 </div>
 	 <!-- Liste invitations recues -->
+	 <h2>Gestionnaire d'invitations</h2>
 	 <div class="panel panel-default">
 		<div class="panel-heading"><h3 class="panel-title"><strong>Invitation(s) recu(s)</strong></h3></div>
 		<div class="panel-body">
