@@ -10,7 +10,7 @@
           <!-- Structure du menu -->
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="connexion.jsp">Connexion</a></li>
+              <li><a href="connexion.jsp">Connexion</a></li>
               <li><a href="inscription.jsp">Inscription</a></li>
             </ul>
           </div>

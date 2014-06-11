@@ -38,7 +38,7 @@
 	// Si joueur reconnu, redirection page joueur
 	if(pseudoOK && mdpOK) {
 		session.setAttribute("joueur", pseudo);
-		response.sendRedirect("/PolyQuizz/testConnexionOK.jsp");
+		response.sendRedirect("/PolyQuizz/Connected_Zone/index.jsp");
 	}
 	
 	

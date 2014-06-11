@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Connexion</title>
+    <title>Enregistrement</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="Bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
@@ -29,7 +29,7 @@
     <input type="email" class="form-control" style="border-radius:0px" id="exampleInputPseudo" placeholder="Entrer votre pseudo">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password <a href="/sessions/forgot_password">(forgot password)</a></label>
+    <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" style="border-radius:0px" id="exampleInputPassword1" placeholder="Password">
         <label for="exampleInputPassword1">Password Confirmation</label>
     <input type="password" class="form-control" style="border-radius:0px" id="exampleInputPassword2" placeholder="Confirmation Password">
