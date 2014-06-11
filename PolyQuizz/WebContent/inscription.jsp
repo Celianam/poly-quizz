@@ -1,41 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import = "hibernate.Inscription"
- %>
+    
+<%@ page import = "misc.FormValidation"%>
+ 
+<%@ page import="java.io.IOException"%>
 
-<%
-String resultat = null;
-/* Récupération des champs du formulaire. */
-String pseudo = request.getParameter("pseudo");
-String motDePasse = request.getParameter("password");
-String confirmation = request.getParameter("passwordConf");
+<% 
+/*  // Récupération des champs du formulaire. 
+String pseudo = request.getParameter("InputPseudo");
+String motDePasse = request.getParameter("InputPassword");
+String confirmation = request.getParameter("InputPasswordConf");
 
-int nbErreurs = 0;
 
-/* Validation du champ pseudo. */
-try {
-	Inscription.validationPseudo( pseudo );
-} catch ( Exception e ) {
-	//erreurs.put( pseudo, e.getMessage() );
+String excepPseudo = "";
+String excepMDP = "";
+
+boolean pseudoOK = false;
+boolean mdpOK = false;
+
+
+// Validation du champ pseudo. 
+if(pseudo != null && pseudo != "") {
+	try {
+		FormValidation.validationPseudo(pseudo);
+		pseudoOK = true;
+		System.out.println("ok");
+	}
+	catch (Exception e) {
+		excepPseudo = e.getMessage();
+	}
 }
+if(motDePasse != null && motDePasse != "" && confirmation != null && confirmation != "") {
+	try {
+		FormValidation.validationPassword(motDePasse,confirmation);
+		mdpOK = true;
+	}
+	catch (Exception e) {
+		excepMDP = e.getMessage();
+	}
+	System.out.println("Succès de l'inscription");
+	
+	try{
+		FormValidation.ajoutNouvelUtilisateur(pseudo,motDePasse);
+	} catch (Exception e) {
+		excepPseudo = e.getMessage();
+	}
+} */
 
-/* Validation des champs mot de passe et confirmation. */
-try {
-	Inscription.validationPassword( motDePasse, confirmation );
-} catch ( Exception e ) {
-	erreurs.put( motDePasse, e.getMessage() );
-}
-
-if (erreurs.isEmpty())
-{
-	resultat = "Succès de l'inscription";
-	Inscription.ajoutNouvelUtilisateur(pseudo,motDePasse);
-}
-else 
-{
-	resultat = "Echec de l'inscription";
-	System.out.println("Echec de l'inscription");
-}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -58,31 +69,31 @@ else
       <jsp:include page="menu.jsp" />
       
       <!-- Formulaire d'inscription -->
-      <form action="inscription" method="post" enctype="multipart/form-data">
+      <form role="form" action="inscription" method="post">
       <h2>Création de votre compte joueur</h2><br/>
 	      <div class="form-horizontal" role="form">
 	      	<div class="form-group">
-			   <label for="pseudo" class="col-sm-2 control-label">Pseudo : </label>
+			   <label for="InputPseudo" class="col-sm-2 control-label">Pseudo : </label>
 			   <div class="col-sm-10">
-			      <input type="text" class="form-control" id="pseudo" 
-			         placeholder="Entrer votre pseudo">
-			      <span class="erreur">${erreurs['pseudo']}</span>
+			      <input type="text" class="form-control" name="InputPseudo"
+			         placeholder="Entrer votre pseudo" >
+			      <span class="erreur" style="color:red">${erreurs['InputPseudo']}</span>
 			   </div>
 			</div>
 			<div class="form-group">
-			   <label for="password" class="col-sm-2 control-label">Mot de passe : </label>
+			   <label for="InputPassword" class="col-sm-2 control-label">Mot de passe : </label>
 			   <div class="col-sm-10">
-			      <input type="text" class="form-control" id="password" 
+			      <input type="password" class="form-control" name="InputPassword"
 			         placeholder="Saississez votre mot de passe">
-			      <span class="erreur">${erreurs['password']}</span>
+			      <span class="erreur" style="color:red" >${erreurs['InputPassword']}</span>
 			   </div>
 			</div>
 			<div class="form-group">
-			   <label for="passwordConf" class="col-sm-2 control-label">Confirmation : </label>
+			   <label for="InputPasswordConf" class="col-sm-2 control-label">Confirmation : </label>
 			   <div class="col-sm-10">
-			      <input type="text" class="form-control" id="passwordConf" 
+			      <input type="password" class="form-control" name="InputPasswordConf" 
 			         placeholder="Retaper votre mot de passe">
-			      <span class="erreur">${erreurs['passwordConf']}</span>
+			      <span class="erreur" style="color:red"></span>
 			   </div>
 			</div>
 		<div class="form-group">
