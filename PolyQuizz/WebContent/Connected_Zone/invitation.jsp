@@ -125,6 +125,10 @@
 											p.setJoueur1(joueurCourant);
 											p.setJoueur2(hote);
 											p.setJoueurCourant(joueurCourant);
+											p.setScoreJoueur1(0);
+											p.setScoreJoueur2(0);
+											p.setNumRoundJoueur1(0);
+											p.setNumRoundJoueur2(0);
 											PartieRepository.save(p);
 
 											Round r = new Round();
