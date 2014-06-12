@@ -261,10 +261,10 @@ public class JoueurRepository
 			String sql = "select id from joueur where id <> " + id
 					+ " and id not in "
 					+ "(select joueur1 from partie where joueur2 = " + id
-					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 or numRoundJoueur1 IS NULL or numRoundJoueur2 IS NULL)) "
+					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4)) "
 					+ "and id not in "
 					+ "(select joueur2 from partie where joueur1 = " + id
-					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 or numRoundJoueur1 IS NULL or numRoundJoueur2 IS NULL)) "
+					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4)) "
 					+ "and id not in "
 					+ "(select joueurCreateur from invitation where joueurEnAttente = " + id + ")"
 					+ " and id not in "
@@ -280,6 +280,37 @@ public class JoueurRepository
 				joueurs.add((Joueur) j);
 			}
 
+			
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		return joueurs;
+	}
+	
+	public static List<Joueur> joueursPartieEnCours(Joueur joueur)
+	{
+		List<Joueur> joueurs = new ArrayList<Joueur>();
+		try
+		{
+			Session session = HibernateUtil.currentSession();
+			
+			int id = joueur.getId();
+			String sql = "select joueur1 from partie where joueur2 = " + id
+					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 ) "
+					+ "UNION select joueur2 from partie where joueur1 = " + id
+					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4) ";					
+			
+			Query query = session.createSQLQuery(sql);			
+			Iterator<Integer> listId = query.list().iterator();
+			
+			while(listId.hasNext())
+			{
+				Joueur j = JoueurRepository.find(listId.next());
+				joueurs.add((Joueur) j);
+			}	
 			
 			HibernateUtil.closeSession();
 		}
