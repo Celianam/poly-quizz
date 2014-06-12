@@ -116,42 +116,38 @@ public class PartieRepository
 			}
 			e.printStackTrace();
 		}
-	}
+	}		
 	
-	
-	public static List<Partie> alreadyMet(Joueur j1, Joueur j2)
+	public static boolean dejaRencontre(Joueur joueurConnecte, Joueur joueurCourant)
+
 	{
-		boolean exist = false;
-		List<Partie> listParties = new ArrayList<Partie>();
+		boolean rencontre = false;
 		
 		try
 		{
 			Session session = HibernateUtil.currentSession();
 			String hql = "from Partie "  + 
-	             	 	 "WHERE (joueur1 = :j1 AND joueur2 =:j2) " +
-	             	 	 "OR (joueur1 = :j3 AND joueur2 =: j4)";
+	             	 	 "where (joueur1 = :joueurConnecte "
+	             	 	 + "and joueur2 = :joueurCourant) "
+	             	 	 + "or (joueur1 = :joueurCourant "
+	             	 	 + "and joueur2 = :joueurConnecte)";	
+
 			Query query = session.createQuery(hql);
-			query.setParameter("j1", j1.getId());
-			query.setParameter("j2", j2.getId());
-			query.setParameter("j3", j2.getId());
-			query.setParameter("j4", j1.getId());
+			query.setParameter("joueurConnecte", joueurConnecte.getId());
+			query.setParameter("joueurCourant", joueurCourant.getId());
 			
-			if(query.list().size() == 1)
+			if(!query.list().isEmpty())
+
 			{
-				exist = true;
-			}
-			
-			Iterator<Partie> parties = query.iterate();
-			while(parties.hasNext())
-			{
-				listParties.add((Partie)parties.next());
-			}
+				rencontre = true;
+			}				
+
 			HibernateUtil.closeSession();
 		}
 		catch(HibernateException e)
 		{
 			e.printStackTrace();
 		}
-		return listParties;
+		return rencontre;
 	}
 }

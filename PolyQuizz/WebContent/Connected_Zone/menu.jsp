@@ -14,9 +14,19 @@
       Mon compte <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li><a href="pswd_change.jsp">Changer mot de passe</a></li>
-      <li><a href="pswd_change.jsp">Deconnexion</a></li>
-
+      <li><a href="pswd_change.jsp">Changer mot de passe</a></li>      
     </ul>
   </li>
+  <li>
+  	<form role="form" action="menu.jsp" method="post">
+  		<button type="submit" name="disconnect" class="btn btn-primary">Deconnexion</button>
+  	</form>
+  </li>  	
+  		
+		<%
+			if (request.getParameter("disconnect") != null) {
+				session.removeAttribute("joueur");
+				response.sendRedirect("/PolyQuizz/index.jsp");			
+			}
+		%>
 </ul>

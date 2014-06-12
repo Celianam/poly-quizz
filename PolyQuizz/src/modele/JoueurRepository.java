@@ -228,4 +228,59 @@ public class JoueurRepository
 		}
 		return null;
 	}
+	
+	public static List<Joueur> joueursLibres(Joueur joueur)
+	{
+		List<Joueur> joueurs = new ArrayList<Joueur>();
+		
+		try
+		{
+			Session session = HibernateUtil.currentSession();
+//			String hql = "select id from joueur where id <> :joueurConnecte "
+//					+ "and id not in "
+//					+ "(select joueur1 from partie where joueur2 = :joueurConnecte "
+//					+ "and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4)) "
+//					+ "and id not in "
+//					+ "(select joueur2 from partie where joueur1 = :joueurConnecte "
+//					+ "and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4)) "
+//					+ "and id not in "
+//					+ "(select joueurCreateur from invitation where joueurEnAttente = :joueurConnecte) "
+//					+ "and id not in "
+//					+ "(select joueurEnAttente from invitation where joueurCreateur = :joueurConnecte) ";
+//			
+//			Query query = session.createQuery(hql);
+//			query.setParameter("joueurConnecte", joueur.getId());
+			
+			int id = joueur.getId();
+			String sql = "select id from joueur where id <> " + id
+					+ " and id not in "
+					+ "(select joueur1 from partie where joueur2 = " + id
+					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 or numRoundJoueur1 IS NULL or numRoundJoueur2 IS NULL)) "
+					+ "and id not in "
+					+ "(select joueur2 from partie where joueur1 = " + id
+					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 or numRoundJoueur1 IS NULL or numRoundJoueur2 IS NULL)) "
+					+ "and id not in "
+					+ "(select joueurCreateur from invitation where joueurEnAttente = " + id + ")"
+					+ " and id not in "
+					+ "(select joueurEnAttente from invitation where joueurCreateur = " + id + ")";
+			
+			Query query = session.createSQLQuery(sql);
+			
+			Iterator<Integer> listId = query.list().iterator();
+			
+			while(listId.hasNext())
+			{
+				Joueur j = JoueurRepository.find(listId.next());
+				joueurs.add((Joueur) j);
+			}
+
+			
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		return joueurs;
+	}
 }
