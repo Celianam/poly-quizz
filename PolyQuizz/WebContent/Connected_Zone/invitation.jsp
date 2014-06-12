@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@page import="java.util.List"%>
-<%@ page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="modele.*"%>
 <%@page import="hibernate.HibernateUtil"%>
 
@@ -34,7 +34,7 @@
 				<img class="imgAutoSize" src="../img/banniere_sous_menu.png" /> <br />
 			</div>
 		</div>
-	</div>
+	
 	<!-- Liste invitations recues -->
 	<h2>Gestionnaire d'invitations</h2>
 	<div class="panel panel-default">
@@ -155,7 +155,7 @@
 				</div>
 			</div>
 		</div>
-
+		</div>
 
 		<!-- Liste des joueurs -->
 		<div class="panel panel-default">
@@ -192,7 +192,7 @@
 										for (Joueur j : joueursLibres) {
 
 											String iconRencontre2 = new String();
-											boolean dejaRencontre = PartieRepository.dejaRencontre(joueurCourant, j);
+											boolean dejaRencontre = PartieRepository.dejaRencontre(joueurConnecte, j);
 											if (dejaRencontre) {
 												iconRencontre2 = "ok";
 											}
