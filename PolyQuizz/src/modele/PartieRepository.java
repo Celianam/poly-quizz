@@ -163,4 +163,40 @@ public class PartieRepository
 		
 		return rencontre;
 	}
+	
+	public static int incrementerScoreJoueurCourant(Partie p)
+	{
+		int newScore = 0;
+		if(p.getJoueurCourant().equals(p.getJoueur1()))
+		{
+			newScore = p.getScoreJoueur1();
+			newScore++;
+			p.setScoreJoueur1(newScore);
+		}
+		else
+		{
+			newScore = p.getScoreJoueur2();
+			newScore++;
+			p.setScoreJoueur2(newScore);
+		}
+		
+		update(p);
+		return newScore;
+	}
+	
+	public static int getScoreJoueurCourant(Partie p)
+	{
+		int score = 0;
+		if(p.getJoueurCourant().equals(p.getJoueur1()))
+		{
+			score = p.getScoreJoueur1();
+		}
+		else
+		{
+			score = p.getScoreJoueur2();
+		}
+		
+		update(p);
+		return score;
+	}
 }
