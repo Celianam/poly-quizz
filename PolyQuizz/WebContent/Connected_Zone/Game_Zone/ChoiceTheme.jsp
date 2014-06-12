@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="modele.*"%>
+<%@page import="hibernate.HibernateUtil"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,9 +29,60 @@
 		<h2>Choix du thème</h2>
   		<p>Choisissez un thème pour votre prochain round</p>
 	</div>
-
+	<%  // Ce if n'est jamais censé arrivé :
+		if (session.getAttribute("idPartieEnCours") == null) {
+ 			response.sendRedirect("../index.jsp");
+			return; 
+		}else
+		{
+			// Je recupere la partie en cours
+			Partie p = PartieRepository.find(Integer.parseInt(session.getAttribute("idPartieEnCours").toString()));//Recoit l'id de la partie
+			String themeChoisi = null;
+			boolean _estChoisi = false;
+		
+			if(request.getParameter("Cinema")!=null)
+			{
+				themeChoisi = "Cinema";
+				_estChoisi = true;
+			}
+			if(request.getParameter("Histoire")!=null)
+			{
+				themeChoisi = "Histoire";
+				_estChoisi = true;
+			}
+			if(request.getParameter("Musique")!=null)
+			{
+				themeChoisi = "Musique";
+				_estChoisi = true;
+			}
+			if(request.getParameter("JVideo")!=null)
+			{
+				themeChoisi = "JVideo";
+				_estChoisi = true;
+			}
+			if(request.getParameter("Technologie")!=null)
+			{
+				themeChoisi = "Technologie";
+				_estChoisi = true;
+			}
+			if(request.getParameter("Litterature")!=null)
+			{
+				themeChoisi = "Litterature";
+				_estChoisi = true;
+			}
+			// Si un thème à été choisi, on affecte au round courant 3 questions et on redirige vers la page des questions
+			if(_estChoisi = true)
+			{
+				Theme t = ThemeRepository.find(themeChoisi);
+				QuestionRepository.random3Questions(t, p.getRoundCourant());
+				response.sendRedirect("roundplay.jsp");
+				return;
+			}
+		}
+	%>
 
 	 <!-- Réponses -->
+	 <form role="form" action="ChoiceTheme.jsp" method="post">
 	<div class="panel panel-default">
 		<div class="panel-heading"><h3 class="panel-title"><strong>Sur quel thème allez-vous vous affronter ?</strong></h3></div>
 		<div class="panel-body">
@@ -38,20 +91,21 @@
 			<table class="table table-striped">  
         <tbody>  
           <tr>  
-	       <td><center><img src="../../img/Cinema_icone.png"/></center></td>
-            <td><center><img src="../../img/Histoire_icone.png"/></center></td>
-            <td><center><img src="../../img/Litterature_icone.png"/></center></td>
+	       <td><center><input type="submit" value="" name="Cinema" style="BACKGROUND-IMAGE: url(../../img/Cinema_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+            <td><center><input type="submit" value="" name="Histoire" style="BACKGROUND-IMAGE: url(../../img/Histoire_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+            <td><center><input type="submit" value="" name="Litterature" style="BACKGROUND-IMAGE: url(../../img/Litterature_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
           </tr>
           <tr>  
-	       <td><center><img src="../../img/Musique_icone.png"/></center></td>
-            <td><center><img src="../../img/Technologie_icone.png"/></center></td>
-            <td><center><img src="../../img/jvideo_icone.png"/></center></td>
+	       <td><center><input type="submit" value="" name="Musique" style="BACKGROUND-IMAGE: url(../../img/Musique_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+            <td><center><input type="submit" value="" name="Technologie" style="BACKGROUND-IMAGE: url(../../img/Technologie_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+            <td><center><input type="submit" value="" name="JVideo" style="BACKGROUND-IMAGE: url(../../img/jvideo_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
           </tr>
         </tbody>  
       </table>
-			</div>
-	  </div>
+	 </div>
+	 </div>
 	</div>
+	</form>
 
 
 
