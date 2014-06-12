@@ -3,8 +3,11 @@ package modele;
 import hibernate.HibernateUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -68,6 +71,7 @@ public class QuestionRepository
 				query.setMaxResults(3);
 				
 				Iterator<Question> questions = query.iterate();
+				round.setQuestions(new HashSet<Question>());
 				while(questions.hasNext())
 				{
 					round.addToQuestions((Question)questions.next());
