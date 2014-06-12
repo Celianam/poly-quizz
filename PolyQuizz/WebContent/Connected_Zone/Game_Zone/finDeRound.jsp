@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@page import="modele.*"%>
+	pageEncoding="ISO-8859-1"%>
+<%@page import="modele.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,55 +8,51 @@
 <% Partie p = PartieRepository.find(Integer.parseInt(session.getAttribute("idPartieEnCours").toString()));
    int numRound = PartieRepository.getRoundJoueurCourant(p);
 %>
-<title><%= session.getAttribute("joueur") %> - Résultat du round <%= numRound%> </title>
-    <!-- On ouvre la fenÃªtre Ã  la largeur de l'Ã©cran -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- IntÃ©gration du CSS Bootstrap -->
-    <link href="../../Bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+<title><%= session.getAttribute("joueur") %> - Résultat du round
+	<%= numRound%></title>
+<!-- On ouvre la fenÃªtre Ã  la largeur de l'Ã©cran -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- IntÃ©gration du CSS Bootstrap -->
+<link href="../../Bootstrap/css/bootstrap.css" rel="stylesheet"
+	media="screen">
 
-    <!-- IntÃ©gration du CSS responsive Bootstrap -->
-    <link href="../../Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!-- IntÃ©gration du CSS responsive Bootstrap -->
+<link href="../../Bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
 </head>
 <body>
-<!-- Conteneur principal -->
-    <div class="container">
-      
-	      <!-- Barre de navigation -->
-	     <div>
-		 	<jsp:include page="menu.jsp" />
-		 </div><br/><br/>
-		
-		
+	<!-- Conteneur principal -->
+	<div class="container">
+
+		<!-- Barre de navigation -->
+		<div>
+			<jsp:include page="menu.jsp" />
+		</div>
+		<br />
+		<br />
+
+
 		<% 
 		String text, link;
 		String over = "";
 		
-		if (PartieRepository.getRoundJoueurCourant(p) < PartieRepository.getRoundAdversaire(p)) {
-				text = "Round suivant";
-				link = "ChoiceTheme.jsp";
-		}
-		else {
-				text = "Retour à l'accueil";
-				link = "../index.jsp";
-		}
-		
 		PartieRepository.incrementerRoundJoueurCourant(p);	
 		%>
 		<div class="jumbotron">
-			<h2>Résultat du round <%= numRound%> : </h2>
-	  		<p>Score : <%= PartieRepository.getScoreJoueurCourant(p) %>/9</p><br/>
-	  		<p><%= over %></p>
-		</div>
-	
+			<h2>
+				Résultat du round
+				<%= numRound%>
+				:
+			</h2>
+			<p>
+				Score :
+				<%= PartieRepository.getScoreJoueurCourant(p) %>/9
+			</p>
+			<br />
 
-		<!-- Button round suivant -->
-		<div class="row">
-		   <div class="col-sm-offset-2 col-sm-10">
-		      <a href="<%= link%>"><button class="btn btn-default"><%= text%></button></a>
-		   </div>
-		</div>
-		
 		<% 
+		text = "Retour à l'accueil";
+		link = "../index.jsp";
 		// Fin de partie
 		if(PartieRepository.getRoundJoueurCourant(p) == PartieRepository.getRoundAdversaire(p) && PartieRepository.getRoundJoueurCourant(p) == 4)
 		{
@@ -66,6 +62,9 @@
 				over = "Partie terminée ! Vous avez perdu...";
 			else if(PartieRepository.getScoreJoueurCourant(p) == PartieRepository.getScoreJoueurAdversaire(p))
 				over = "Partie terminée ! Match nul !";
+			
+			text = "Retour à l'accueil";
+			link = "../index.jsp";
 		}
 		else
 		{ // Ce n'est pas une fin de partie
@@ -77,30 +76,34 @@
 				RoundRepository.save(r);
 				p.setRoundCourant(r);
 				
-				// et on incrémente le round du joueur courant
-				PartieRepository.incrementerRoundJoueurCourant(p);
+				text = "Round suivant";
+				link = "ChoiceTheme.jsp";
 			}
-			
-			if(PartieRepository.getRoundAdversaire(p) < 3 && PartieRepository.getRoundAdversaire(p) < PartieRepository.getRoundJoueurCourant(p)) {
+			else if(PartieRepository.getRoundAdversaire(p) < PartieRepository.getRoundJoueurCourant(p)) {
 				// C'est au tour de l'adversaire de jouer au round
 				p.setJoueurCourant(PartieRepository.getAdversaire(p));
 				
+				text = "Retour à l'accueil";
+				link = "../index.jsp";
 			}
-			
 		}
-		
 		PartieRepository.update(p);
 		%>
-		 
-		
+					<p><%= over %></p>
+		</div>
+	</div>
+
+	<!-- Button round suivant -->
+	<div class="row">
+		<div class="col-sm-offset-2 col-sm-10">
+			<a href="<%= link%>"><button class="btn btn-default"><%= text%></button></a>
+		</div>
+	</div>
 
 
-
-    </div>
-    
-    <!-- IntÃ©gration de la libraire jQuery -->
-    <script src="../Bootstrap/js/jquery-1.11.1.min.js"></script>
-    <!-- IntÃ©gration de la libraire de composants du Bootstrap -->
-    <script src="../Bootstrap/js/bootstrap.min.js"></script>
-  </body>
+	<!-- IntÃ©gration de la libraire jQuery -->
+	<script src="../Bootstrap/js/jquery-1.11.1.min.js"></script>
+	<!-- IntÃ©gration de la libraire de composants du Bootstrap -->
+	<script src="../Bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>

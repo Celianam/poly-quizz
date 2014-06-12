@@ -70,7 +70,7 @@
 				themeChoisi = "Litterature";
 				_estChoisi = true;
 			}
-			// Si un thème à été choisi, on affecte au round courant 3 questions et on redirige vers la page des questions
+			// Si un thème a été choisi, on affecte au round courant 3 questions et on redirige vers la page des questions
 			if(_estChoisi = true)
 			{
 				Theme t = ThemeRepository.find(themeChoisi);
