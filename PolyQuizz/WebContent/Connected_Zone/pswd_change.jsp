@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="modele.*"%>
+<%@page import="hibernate.HibernateUtil"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,7 +31,37 @@
 		 	<span>Vous n'avez plus confiance en votre mot de passe ? Changez-le ici !</span>
 		 </div><br/><br/>
 		 <div class="row-fluid">
- 			<form role="form">
+		 <%
+		 		// Recupération du joueur courant : 
+		 		Joueur j = (Joueur)session.getAttribute("joueur");
+		 		// Verification si nous avons cliqué sur le bouton submit
+		 		
+		 		if(request.getParameter("envois")!=null)
+		 		{
+		 			System.out.println(request.getParameter("actualpswd"));
+		 			System.out.println(request.getParameter("newpassword"));
+		 			System.out.println(request.getParameter("passwordConf"));
+		 			
+		 			if(request.getParameter("actualpswd")!=null && request.getParameter("newpassword")!=null && request.getParameter("passwordConf")!=null && request.getParameter("passwordConf").toString().equals(request.getParameter("newpassword").toString()))
+		 			{
+		 				String mdp = request.getParameter("actualpswd");
+						byte[] mdpConvertiEnByte = mdp.getBytes();
+						boolean verifOk = JoueurRepository.exist(j.getPseudo(), mdp.getBytes());
+		 				// Si verif Ok est true alors le champ ancien mdp correspond bien à celui dans la base
+		 				// on peut donc lancer un un update pour le nouveau mot de passe.
+		 				if(verifOk)
+		 				{	
+		 					// EFFECTUER LE CHANGEMENT DE MOT DE PASSE ICI
+		 					response.sendRedirect("index.jsp");
+							return;
+		 				}
+		 			}else
+		 			{
+		 				// show error
+		 			}
+		 		}
+		 %>
+ 			<form role="form" method="post" action="pswd_change.jsp">
                <div class="row">
                    <div class="form-group col-xs-6">
                        <label for="actualpswd">Mot de passe actuel</label>
@@ -52,7 +84,7 @@
                <div class="row-fluid">
                    <div class="form-group col-xs-12">
                        <!-- <button type="submit" class="btn btn-lg btn-success">Changer</button> -->
-                       <button type="submit" class="btn">Changer</button>
+                       <button name="envois" type="submit" class="btn">Changer</button>
                    </div>
                </div>
            </form>
