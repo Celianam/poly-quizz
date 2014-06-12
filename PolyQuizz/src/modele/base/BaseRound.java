@@ -1,9 +1,6 @@
 package modele.base;
 
 import java.io.Serializable;
-import java.util.Iterator;
-
-import modele.Question;
 
 
 /**
@@ -11,12 +8,12 @@ import modele.Question;
  * For more information or documentation, visit The Hibernate Synchronizer page
  * at http://www.binamics.com/hibernatesync or contact Joe Hudson at joe@binamics.com.
  *
- * This is an object that contains data related to the round table.
+ * This is an object that contains data related to the ROUND table.
  * Do not modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
  * @hibernate.class
- *  table="round"
+ *  table="ROUND"
  */
 public abstract class BaseRound  implements Serializable {
 
@@ -33,7 +30,7 @@ public abstract class BaseRound  implements Serializable {
 	private modele.Partie _partie;
 
 	// collections
-	private java.util.Set<Question> _questions;
+	private java.util.Set _questions;
 
 
 	// constructors
@@ -106,7 +103,7 @@ public abstract class BaseRound  implements Serializable {
 	/**
 	 * Return the value associated with the column: questions
 	 */
-	public java.util.Set<Question> getQuestions () {
+	public java.util.Set getQuestions () {
 		return this._questions;
 	}
 
@@ -114,14 +111,15 @@ public abstract class BaseRound  implements Serializable {
 	 * Set the value related to the column: questions
 	 * @param _questions the questions value
 	 */
-	public void setQuestions (java.util.Set<Question> _questions) {
+	public void setQuestions (java.util.Set _questions) {
 		this._questions = _questions;
 	}
 	
-	public void addToQuestions (Question q) {
-		if (null == this._questions) this._questions = new java.util.HashSet<Question>();
-		this._questions.add(q);
+	public void addToQuestions (Object obj) {
+		if (null == this._questions) this._questions = new java.util.HashSet();
+		this._questions.add(obj);
 	}
+
 
 
 	public boolean equals (Object obj) {

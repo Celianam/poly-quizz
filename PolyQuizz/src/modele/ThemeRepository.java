@@ -19,7 +19,7 @@ public class ThemeRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from THEME");
+			Query query = session.createQuery("from Theme");
 			Iterator<Theme> themes = query.iterate();
 			
 			while(themes.hasNext())
@@ -60,7 +60,7 @@ public class ThemeRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			String hql = "FROM THEME "  + 
+			String hql = "FROM Theme "  + 
             	 	 	"WHERE nom = :nom ";
 			Query query = session.createQuery(hql);
 			query.setParameter("nom", theme);

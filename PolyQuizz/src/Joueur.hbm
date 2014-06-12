@@ -4,7 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="modele">
-	<class name="Joueur" table="joueur" lazy="false">
+	<class name="Joueur" table="JOUEUR" lazy="false">
 		<id
 			column="id"
 			name="Id"
@@ -26,7 +26,7 @@
 			type="string"
 		 />
 		
-		 <set name="invitations" table="invitation" lazy="false">
+		 <set name="invitations" table="INVITATION" lazy="false">
 		 	<key column="joueurEnAttente"/>
 		 	<many-to-many class="Joueur" unique="true" column="joueurCreateur" />
 		 </set>

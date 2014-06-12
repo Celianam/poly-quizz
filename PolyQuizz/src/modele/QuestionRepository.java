@@ -22,7 +22,7 @@ public class QuestionRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from QUESTION");
+			Query query = session.createQuery("from Question");
 			Iterator<Question> questions = query.iterate();
 
 			while(questions.hasNext())
@@ -66,7 +66,7 @@ public class QuestionRepository
 			{
 				ok = true;
 				Session session = HibernateUtil.currentSession();
-				Query query = session.createQuery("FROM QUESTION WHERE theme = :theme ORDER BY RAND()");
+				Query query = session.createQuery("FROM Question WHERE theme = :theme ORDER BY RAND()");
 				query.setParameter("theme", theme.getId());
 				query.setMaxResults(3);
 				

@@ -22,7 +22,7 @@ public class JoueurRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from JOUEUR");
+			Query query = session.createQuery("from Joueur");
 			Iterator<Joueur> joueurs = query.iterate();
 			
 			while(joueurs.hasNext())
@@ -79,7 +79,7 @@ public class JoueurRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			String hql = "from JOUEUR "  + 
+			String hql = "from Joueur "  + 
 	             	 	 "where pseudo = :pseudo ";
 			Query query = session.createQuery(hql);
 			query.setParameter("pseudo", pseudo);
@@ -104,7 +104,7 @@ public class JoueurRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			String hql = "from JOUEUR "  + 
+			String hql = "from Joueur "  + 
 	             	 	 "where pseudo = :pseudo ";
 			Query query = session.createQuery(hql);
 			query.setParameter("pseudo", pseudo);
@@ -125,7 +125,7 @@ public class JoueurRepository
 		
 		try
 		{
-			String hql = "from JOUEUR "  + 
+			String hql = "from Joueur "  + 
 		             	 "where pseudo = :pseudo " + 
 					     "and mdp = :mdp";
 			Session session = HibernateUtil.currentSession();

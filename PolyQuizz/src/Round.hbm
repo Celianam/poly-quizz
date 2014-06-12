@@ -4,7 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="modele">
-	<class name="Round" table="round" lazy="false">
+	<class name="Round" table="ROUND" lazy="false">
 		<id
 			column="id"
 			name="Id"
@@ -15,7 +15,7 @@
 		
 		<many-to-one class="Partie" name="partie" column="partie" not-null="true"/>
 		
-		<set name="questions" table="round_question" lazy="false">
+		<set name="questions" table="ROUND_QUESTION" lazy="false">
 		 	<key column="round"/>
 		 	<many-to-many class="Question" unique="true" column="question"/>
 		</set>

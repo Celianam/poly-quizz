@@ -8,12 +8,12 @@ import java.io.Serializable;
  * For more information or documentation, visit The Hibernate Synchronizer page
  * at http://www.binamics.com/hibernatesync or contact Joe Hudson at joe@binamics.com.
  *
- * This is an object that contains data related to the question table.
+ * This is an object that contains data related to the QUESTION table.
  * Do not modify this class because it will be overwritten if the configuration file
  * related to this class is modified.
  *
  * @hibernate.class
- *  table="question"
+ *  table="QUESTION"
  */
 public abstract class BaseQuestion  implements Serializable {
 

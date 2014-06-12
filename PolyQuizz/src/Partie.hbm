@@ -4,7 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="modele">
-	<class name="Partie" table="partie" lazy="false">
+	<class name="Partie" table="PARTIE" lazy="false">
 		<id
 			column="id"
 			name="Id"

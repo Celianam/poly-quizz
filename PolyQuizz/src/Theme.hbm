@@ -4,7 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="modele">
-	<class name="Theme" table="theme" lazy="false">
+	<class name="Theme" table="THEME" lazy="false">
 		<id
 			column="id"
 			name="Id"
