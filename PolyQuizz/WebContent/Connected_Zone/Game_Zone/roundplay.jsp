@@ -2,14 +2,14 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@page import="modele.*"%>
-<%@page import="hibernate.HibernateUtil"%>	
-<%@page import="java.util.Iterator"%>	
-	
+<%@page import="hibernate.HibernateUtil"%>
+<%@page import="java.util.Iterator"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bienvenu(e) <%= session.getAttribute("joueur") %></title>
+<title>Bienvenu(e) <%=session.getAttribute("joueur")%></title>
 <!-- On ouvre la fenÃªtre Ã  la largeur de l'Ã©cran -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- IntÃ©gration du CSS Bootstrap -->
@@ -21,11 +21,44 @@
 	rel="stylesheet">
 </head>
 
-<%!
+<%
+	if (session.getAttribute("joueur") == null) {
+		response.sendRedirect("/PolyQuizz/index.jsp");
+		return;
+	}
+	int idJoueur = ((Joueur) session.getAttribute("joueur")).getId();
+	Joueur joueurCourant = JoueurRepository.find(idJoueur);
+
+	Partie partieCourante = PartieRepository.find(Integer
+			.parseInt(session.getAttribute("idPartieEnCours")
+					.toString()));//Recoit l'id de la partie
+
+	System.out.println("Partie : " + partieCourante.getId());
+	Round roundCourant = partieCourante.getRoundCourant();
+	java.util.Set<Question> listeQuestions = roundCourant
+			.getQuestions();
+	//for(Question q:listeQuestions)
+	//System.out.println(q.getQuestion());
+%>
+
+<%
+	boolean bonneReponse = false;
 	int cpt = 1;
-	int nbTotal = 3;
-	int score  = 0;
+	if (request.getParameter("cpt") != null) {
+		cpt = Integer.parseInt(request.getParameter("cpt").toString()) + 1;
+	}
+
+	int nbTotal = listeQuestions.size();
+
 	String color = "black";
+	if (request.getParameter("color") != null) {
+		if (bonneReponse) {
+			color = "green";
+		} else {
+			color = "red";
+		}
+	}
+	int score = PartieRepository.getScoreJoueurCourant(partieCourante);
 %>
 
 <body>
@@ -38,86 +71,81 @@
 		</div>
 		<br /> <br />
 
-		<%
-		int idJoueur = ((Joueur) session.getAttribute("joueur")).getId();
-		Joueur joueurCourant = JoueurRepository.find(idJoueur);
-		
-		int id = ((Round) session.getAttribute("round")).getId();
-		Round roundCourant = RoundRepository.find(id);
-		java.util.Set<Question> listeQuestions = roundCourant.getQuestions();
-		%>
 		<!-- Question -->
 		<div class="jumbotron">
-			<h2>Question <%=cpt%></h2>
+			<h2>
+				Question
+				<%=cpt%></h2>
 			<%
-			Question q;
-			Object elem = new Object();
-			int j;
-			Iterator i;
-			for(i=listeQuestions.iterator(), j=0; i.hasNext() && j<cpt; elem=i.next(),j++)
-			{
-			   elem=i.next();
-			}
-			q = (Question)elem;
+				System.out.println("Cpt:" + cpt);
+
+				Question q = null;
+				int j = 1;
+				for (Question question : listeQuestions) {
+					if (j == cpt) {
+						q = question;
+					}
+					j++;
+
+				}
 			%>
-			<p><%=q.getQuestion() %> </p>
-			<p><%=cpt%>/<%=nbTotal %></p>
-			<span style="color:<%="color"%>"><%= score%></span>
+			<%
+				String rA = q.getReponseA();
+				String rB = q.getReponseB();
+				String rC = q.getReponseC();
+				String rD = q.getReponseD();
+				String bonneRep = q.getBonneReponse();
+
+				System.out.println("Bonne reponse " + bonneRep);
+				if (request.getParameter("A") != null) {
+					if (request.getParameter("A").equals(
+							request.getParameter("bonneRep"))) {
+						bonneReponse = true;
+						score = PartieRepository
+								.incrementerScoreJoueurCourant(roundCourant
+										.getPartie());
+						System.out.println("Score a " + score);
+					}
+				}
+				if (request.getParameter("B") != null) {
+					System.out.println("B");
+					if (request.getParameter("B").equals(
+							request.getParameter("bonneRep"))) {
+						bonneReponse = true;
+						score = PartieRepository
+								.incrementerScoreJoueurCourant(roundCourant
+										.getPartie());
+						System.out.println("Score b " + score);
+					}
+				}
+				if (request.getParameter("C") != null) {
+					System.out.println("C");
+					if (request.getParameter("C").equals(
+							request.getParameter("bonneRep"))) {
+						bonneReponse = true;
+						score = PartieRepository
+								.incrementerScoreJoueurCourant(roundCourant
+										.getPartie());
+						System.out.println("Score c " + score);
+					}
+				}
+				if (request.getParameter("D") != null) {
+					System.out.println("D");
+					if (request.getParameter("D").equals(
+							request.getParameter("bonneRep"))) {
+						bonneReponse = true;
+						PartieRepository.incrementerScoreJoueurCourant(roundCourant
+								.getPartie());
+						System.out.println("Score d " + score);
+					}
+				}
+			%>
+
+			<p><%=q.getQuestion()%>
+			</p>
+			<p><%=cpt%>/<%=nbTotal%></p>
+			<span style="color:<%="color"%>">Score : <%=score%></span>
 		</div>
-
-
-		<%
-		String rA = q.getReponseA();
-		String rB = q.getReponseB();
-		String rC = q.getReponseC();
-		String rD = q.getReponseD();
-		String bonneRep = q.getBonneReponse();
-		
-		if(session.getAttribute("A") != null)
-		{
-			if(rA.equals(bonneRep))
-			{
-				color = "green";
-				score++;
-			}
-			else{
-				color = "red";
-			}
-		}
-		if(session.getAttribute("B") != null)
-		{
-			if(rB.equals(bonneRep))
-			{
-				color = "green";
-				score++;
-			}
-			else{
-				color = "red";
-			}
-		}
-		if(session.getAttribute("C") != null)
-		{
-			if(rC.equals(bonneRep))
-			{
-				color = "green";
-				score++;
-			}
-			else{
-				color = "red";
-			}
-		}
-		if(session.getAttribute("D") != null)
-		{
-			if(rD.equals(bonneRep))
-			{
-				color = "green";
-				score++;
-			}
-			else {
-				color = "red";
-			}
-		}
-		%>
 		<!-- Réponses -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -127,33 +155,39 @@
 			</div>
 			<div class="panel-body">
 				<div class="row-fluid">
-				<form role="form" action="roundplay.jsp" method="post">
-					<table class="table table-striped">
-						<tbody>
-							<td><center>
-									<div class="btn-group">
-										<button type="submit" class="btn btn-default" name="A"><%=rA%></button>
-
-									</div>
-								</center></td>
-							<td><center>
-									<div class="btn-group">
-										<button type="submit" class="btn btn-default" name="B"><%=rB%></button>
-									</div>
-								</center></td>
-							<td><center>
-									<div class="btn-group">
-										<button type="submit" class="btn btn-default" name="C"><%=rC%></button>
-									</div>
-								</center></td>
-							<td><center>
-									<div class="btn-group">
-										<button type="submit" class="btn btn-default" name="D"><%=rD%></button>
-									</div>
-								</center></td>
-							</tr>
-						</tbody>
-					</table>
+					<form role="form" action="roundplay.jsp" method="post">
+						<table class="table table-striped">
+							<tbody>
+								<input type="hidden" name="color" value="<%=color%>">
+								<input type="hidden" name="cpt" value="<%=cpt%>">
+								<input type="hidden" name="bonneRep" value="<%=bonneRep%>">
+								<td><center>
+										<div class="btn-group">
+											<button type="submit" class="btn btn-default" name="A"
+												value="<%=rA%>"><%=rA%></button>
+										</div>
+									</center></td>
+								<td><center>
+										<div class="btn-group">
+											<button type="submit" class="btn btn-default" name="B"
+												value="<%=rB%>"><%=rB%></button>
+										</div>
+									</center></td>
+								<td><center>
+										<div class="btn-group">
+											<button type="submit" class="btn btn-default" name="C"
+												value="<%=rC%>"><%=rC%></button>
+										</div>
+									</center></td>
+								<td><center>
+										<div class="btn-group">
+											<button type="submit" class="btn btn-default" name="D"
+												value="<%=rD%>"><%=rD%></button>
+										</div>
+									</center></td>
+								</tr>
+							</tbody>
+						</table>
 					</form>
 				</div>
 			</div>
