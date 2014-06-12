@@ -42,7 +42,7 @@
 		
 			if(request.getParameter("Cinema")!=null)
 			{
-				themeChoisi = "Cinema";
+				themeChoisi = "Cinéma";
 				_estChoisi = true;
 			}
 			if(request.getParameter("Histoire")!=null)
@@ -74,9 +74,13 @@
 			if(_estChoisi = true)
 			{
 				Theme t = ThemeRepository.find(themeChoisi);
-				QuestionRepository.random3Questions(t, p.getRoundCourant());
-				response.sendRedirect("roundplay.jsp");
-				return;
+				//ThemeRepository.save(t);
+				boolean testquestion = QuestionRepository.random3Questions(t, p.getRoundCourant());
+				if(testquestion==true)
+				{
+					response.sendRedirect("roundplay.jsp");
+					return;
+				}
 			}
 		}
 	%>
