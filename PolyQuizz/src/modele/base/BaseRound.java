@@ -1,6 +1,7 @@
 package modele.base;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 import modele.Question;
 
@@ -121,7 +122,6 @@ public abstract class BaseRound  implements Serializable {
 		if (null == this._questions) this._questions = new java.util.HashSet<Question>();
 		this._questions.add(q);
 	}
-
 
 
 	public boolean equals (Object obj) {
