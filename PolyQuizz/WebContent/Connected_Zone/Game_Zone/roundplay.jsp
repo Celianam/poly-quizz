@@ -115,7 +115,7 @@
 					if (request.getParameter("D").equals(
 							request.getParameter("bonneRep"))) {
 						bonneReponse = true;
-						PartieRepository.incrementerScoreJoueurCourant(roundCourant
+						score = PartieRepository.incrementerScoreJoueurCourant(roundCourant
 								.getPartie());
 						System.out.println("Score d " + score);
 					}
