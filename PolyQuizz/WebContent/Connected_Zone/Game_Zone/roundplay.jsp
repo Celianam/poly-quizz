@@ -44,11 +44,10 @@
 <%
 	boolean bonneReponse = false;
 	int cpt = 1;
+	int nbTotal = listeQuestions.size();
 	if (request.getParameter("cpt") != null) {
 		cpt = Integer.parseInt(request.getParameter("cpt").toString()) + 1;
 	}
-
-	int nbTotal = listeQuestions.size();
 
 	String color = "black";
 	int score = PartieRepository.getScoreJoueurCourant(partieCourante);
@@ -79,10 +78,13 @@
 						q = question;
 					}
 					j++;
-
 				}
-			%>
-			<%
+				
+				if (q == null) {
+					response.sendRedirect("finDeRound.jsp");
+					return;
+				}
+				
 				String rA = q.getReponseA();
 				String rB = q.getReponseB();
 				String rC = q.getReponseC();
@@ -161,30 +163,31 @@
 								<input type="hidden" name="color" value="<%=color%>">
 								<input type="hidden" name="cpt" value="<%=cpt%>">
 								<input type="hidden" name="bonneRep" value="<%=bonneRep%>">
-								<td><center>
-										<div class="btn-group">
-											<button type="submit" class="btn btn-default" name="A"
-												value="<%=rA%>"><%=rA%></button>
-										</div>
-									</center></td>
-								<td><center>
-										<div class="btn-group">
-											<button type="submit" class="btn btn-default" name="B"
-												value="<%=rB%>"><%=rB%></button>
-										</div>
-									</center></td>
-								<td><center>
-										<div class="btn-group">
-											<button type="submit" class="btn btn-default" name="C"
-												value="<%=rC%>"><%=rC%></button>
-										</div>
-									</center></td>
-								<td><center>
-										<div class="btn-group">
-											<button type="submit" class="btn btn-default" name="D"
-												value="<%=rD%>"><%=rD%></button>
-										</div>
-									</center></td>
+								<tr>
+									<td><center>
+											<div class="btn-group">
+												<button type="submit" class="btn btn-default" name="A"
+													value="<%=rA%>"><%=rA%></button>
+											</div>
+										</center></td>
+									<td><center>
+											<div class="btn-group">
+												<button type="submit" class="btn btn-default" name="B"
+													value="<%=rB%>"><%=rB%></button>
+											</div>
+										</center></td>
+									<td><center>
+											<div class="btn-group">
+												<button type="submit" class="btn btn-default" name="C"
+													value="<%=rC%>"><%=rC%></button>
+											</div>
+										</center></td>
+									<td><center>
+											<div class="btn-group">
+												<button type="submit" class="btn btn-default" name="D"
+													value="<%=rD%>"><%=rD%></button>
+											</div>
+										</center></td>
 								</tr>
 							</tbody>
 						</table>
