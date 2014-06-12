@@ -54,28 +54,35 @@ public class QuestionRepository
 		return j;
 	}
 	
-	public static void random3Questions(Theme theme, Round round)
+	public static boolean random3Questions(Theme theme, Round round)
 	{
+		boolean ok = false;
 		try
 		{
-			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("FROM Question WHERE theme = :theme ORDER BY RAND()");
-			query.setParameter("theme", theme.getId());
-			query.setMaxResults(3);
-			
-			Iterator<Question> questions = query.iterate();
-			while(questions.hasNext())
+			if(theme != null && round != null)
 			{
-				round.addToQuestions((Question)questions.next());
+				ok = true;
+				Session session = HibernateUtil.currentSession();
+				Query query = session.createQuery("FROM Question WHERE theme = :theme ORDER BY RAND()");
+				query.setParameter("theme", theme.getId());
+				query.setMaxResults(3);
+				
+				Iterator<Question> questions = query.iterate();
+				while(questions.hasNext())
+				{
+					round.addToQuestions((Question)questions.next());
+				}
+				RoundRepository.update(round);
+				
+				HibernateUtil.closeSession();
 			}
-			RoundRepository.update(round);
 			
-			HibernateUtil.closeSession();
 		}
 		catch(HibernateException e)
 		{
 			e.printStackTrace();
 		}
+		return ok;
 	}
 	
 	public static void save(Question question)
