@@ -232,6 +232,60 @@ public class PartieRepository
 		return round;
 	}
 	
+	public static int getRoundJoueurCourantPartieEnCours(Joueur joueurConnecte, Joueur joueurCourant)
+	{
+		int round = 0;
+		Partie p = recupPartieEnCours(joueurConnecte, joueurCourant);
+		
+		if(p.getJoueur1().equals(joueurConnecte))
+		{
+			round = p.getNumRoundJoueur1();
+		}
+		else if(p.getJoueur2().equals(joueurConnecte))
+		{
+			round = p.getNumRoundJoueur2();
+		}		
+		
+		return round;
+	}
+	
+	public static Partie recupPartieEnCours(Joueur joueurConnecte, Joueur joueurCourant)
+	{
+		List<Partie> listParties = new ArrayList<Partie>();
+		Partie partie = new Partie();
+
+		try
+		{
+			Session session = HibernateUtil.currentSession();
+
+			String hql = "from Partie "  + 
+            	 	 "where ((joueur1 = :joueurConnecte "
+            	 	 + "and joueur2 = :joueurCourant) "
+            	 	 + "or (joueur1 = :joueurCourant "
+            	 	 + "and joueur2 = :joueurConnecte))"
+            	 	+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 ) ";
+			Query query = session.createQuery(hql);
+			query.setParameter("joueurConnecte", joueurConnecte.getId());
+			query.setParameter("joueurCourant", joueurCourant.getId());				
+			
+			listParties = query.list();
+			if(!listParties.isEmpty()) {
+				Iterator<Partie> itId = listParties.iterator();
+				while(itId.hasNext())
+				{
+					partie = itId.next();
+				}	
+			}			
+			
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		return partie;
+	}
+	
 	public static int nbVictoires(Joueur joueurCourant, Joueur joueurAdversaire)
 	{
 		int nbVictoires = 0;

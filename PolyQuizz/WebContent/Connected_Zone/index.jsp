@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
+
 <%@page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
 <%@page import="modele.*"%>
@@ -37,68 +37,96 @@
 				<!-- LISTE DES INSCRITS POUR INVITATION : -->
 				<div class="row-fluid">
 					<div class="wapperindex">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th><center>Joueur</center></th>
-									<th><center>Reprendre</center></th>
-									<th><center>Déjà rencontré</center></th>
-									<th><center>Round actuel :</center></th>
-								</tr>
-							</thead>
-							<tbody>
+						<form role="form" action="index.jsp" method="post">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th><center>Joueur</center></th>
+										<th><center>Reprendre</center></th>
+										<th><center>Déjà rencontré</center></th>
+										<th><center>Round actuel :</center></th>
+									</tr>
+								</thead>
+								<tbody>
 
-								<%
-									if (session.getAttribute("joueur") == null) {
-										response.sendRedirect("/PolyQuizz/index.jsp");
-										return;
-									}
-									Joueur joueurConnecte = (Joueur) session.getAttribute("joueur");
-									List<Joueur> joueursPartieEnCours = JoueurRepository
-											.joueursPartieEnCours(joueurConnecte);
-									Joueur joueurReprendre = null;
+									<%
+										if (session.getAttribute("joueur") == null) {
+											response.sendRedirect("/PolyQuizz/index.jsp");
+											return;
+										}
+										Joueur joueurConnecte = (Joueur) session.getAttribute("joueur");
+										List<Joueur> joueursPartieEnCours = JoueurRepository
+												.joueursPartieEnCours(joueurConnecte);
+										Joueur joueurReprendre = null;
 
-									for (Joueur j : joueursPartieEnCours) {
+										for (Joueur j : joueursPartieEnCours) {
 
-										String iconRencontre = new String();
-										boolean dejaRencontre = PartieRepository.dejaRencontre(
-												joueurConnecte, j);
-										if (dejaRencontre) {
-											iconRencontre = "ok";
-										} else {
-											iconRencontre = "remove";
+											String iconRencontre = new String();
+											boolean dejaRencontre = PartieRepository.dejaRencontre(
+													joueurConnecte, j);
+											if (dejaRencontre) {
+												iconRencontre = "ok";
+											} else {
+												iconRencontre = "remove";
+											}
+
+									%>
+
+									<tr>
+										<td><center><%= j.getPseudo() %></center></td>
+										<td><center>
+												<%
+													Partie p = PartieRepository.recupPartieEnCours(joueurConnecte, j);
+													if(p.getJoueurCourant().equals(joueurConnecte))
+													{
+												%>
+												<div class="btn-group">
+													<button type="submit" class="btn btn-success"
+														name="reprendre<%=j.getPseudo()%>">Reprendre</button>
+													<%
+														if (request.getParameter("reprendre" + j.getPseudo()) != null) {
+																joueurReprendre = j;
+															}
+													%>
+												</div>
+												<%
+													} else {
+												%>
+												<div class="btn-group">
+													<button type="submit" class="btn btn-primary"
+														name="attente<%=j.getPseudo()%>">En Attente</button>													
+												</div>
+												<% } %>
+											</center></td>
+										<td><center>
+												<span class="glyphicon glyphicon-<%=iconRencontre%>"></span>
+											</center></td>
+										<td><center>
+												<span class="badge-bleu">
+												<%
+													Integer round = PartieRepository.getRoundJoueurCourantPartieEnCours(
+														joueurConnecte, j);
+													String roundAffiche = new String();
+													if(round == 4)
+														roundAffiche = "Fin de partie";
+													else
+														roundAffiche =  Integer.toString(round);
+												%>
+												<%= roundAffiche %></span>
+											</center></td>
+									</tr>
+									<%
 										}
 
-										int nbVictoires = PartieRepository
-												.nbVictoires(joueurConnecte, j);
-										int nbDefaites = PartieRepository.nbDefaites(joueurConnecte, j);
-								%>
-
-								<tr>
-									<td><center>j.getPseudo()</center></td>
-									<td><center>
-											<div class="btn-group">
-												<button type="submit" class="btn btn-success"
-													name="<%=j.getPseudo()%>Reprendre">Reprendre</button>
-											</div>
-										</center></td>
-									<td><center>
-											<span class="glyphicon glyphicon-<%=iconRencontre%>"></span>
-										</center></td>
-									<td><center>
-											<span class="badge-bleu">1</span>
-										</center></td>
-								</tr>
-								<%
-									}
-
-									if (joueursPartieEnCours != null) {
-										JoueurRepository.invite(joueurConnecte, joueursPartieEnCours);
-										response.sendRedirect("/PolyQuizz/Connected_Zone/invitation.jsp");
-									}
-								%>
-							</tbody>
-						</table>
+										if (joueurReprendre != null) {
+											Partie p2 = PartieRepository.recupPartieEnCours(joueurConnecte, joueurReprendre);
+											session.setAttribute("idPartieEnCours", p2.getId());
+											response.sendRedirect("/PolyQuizz/Connected_Zone/Game_Zone/roundplay.jsp");
+										}
+									%>
+								</tbody>
+							</table>
+						</form>
 					</div>
 				</div>
 			</div>
