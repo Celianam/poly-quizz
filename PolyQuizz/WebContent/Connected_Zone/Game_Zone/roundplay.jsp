@@ -32,9 +32,9 @@
 	Partie partieCourante = PartieRepository.find(Integer
 			.parseInt(session.getAttribute("idPartieEnCours")
 					.toString()));//Recoit l'id de la partie
-	System.out.println("Partie : " + partieCourante.getId());
+	//System.out.println("Partie : " + partieCourante.getId());
 	Round roundCourant = partieCourante.getRoundCourant();
-	System.out.println("Round : "+roundCourant.getId());
+	//System.out.println("Round : "+roundCourant.getId());
 	java.util.Set<Question> listeQuestions = roundCourant
 			.getQuestions();
 %>
