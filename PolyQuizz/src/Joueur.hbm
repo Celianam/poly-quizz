@@ -27,8 +27,8 @@
 		 />
 		
 		 <set name="invitations" table="invitation" lazy="false">
-		 	<key column="joueurCreateur"/>
-		 	<many-to-many class="Joueur" unique="true" column="joueurEnAttente" />
+		 	<key column="joueurEnAttente"/>
+		 	<many-to-many class="Joueur" unique="true" column="joueurCreateur" />
 		 </set>
 		
 	</class>

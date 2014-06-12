@@ -117,9 +117,9 @@ public abstract class BaseRound  implements Serializable {
 		this._questions = _questions;
 	}
 	
-	public void addToQuestions (Question obj) {
+	public void addToQuestions (Question q) {
 		if (null == this._questions) this._questions = new java.util.HashSet<Question>();
-		this._questions.add(obj);
+		this._questions.add(q);
 	}
 
 

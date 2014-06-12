@@ -17,7 +17,7 @@
 		
 		<set name="questions" table="round_question" lazy="false">
 		 	<key column="round"/>
-		 	<many-to-many class="Question" column="question"/>
+		 	<many-to-many class="Question" unique="true" column="question"/>
 		</set>
 		
 		

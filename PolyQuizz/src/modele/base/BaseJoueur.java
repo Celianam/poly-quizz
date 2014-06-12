@@ -121,9 +121,9 @@ public abstract class BaseJoueur  implements Serializable {
 		this._invitations = _invitations;
 	}
 	
-	public void addToInvitations (Joueur j) {
+	public void addToInvitations (Joueur obj) {
 		if (null == this._invitations) this._invitations = new java.util.HashSet<Joueur>();
-		this._invitations.add(j);
+		this._invitations.add(obj);
 	}
 
 

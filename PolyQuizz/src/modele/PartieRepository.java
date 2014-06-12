@@ -118,7 +118,8 @@ public class PartieRepository
 		}
 	}		
 	
-	public static boolean rencontre(Joueur joueurConnecte, Joueur joueurCourant)
+	public static boolean dejaRencontre(Joueur joueurConnecte, Joueur joueurCourant)
+
 	{
 		boolean rencontre = false;
 		
@@ -129,17 +130,18 @@ public class PartieRepository
 	             	 	 "where (joueur1 = :joueurConnecte "
 	             	 	 + "and joueur2 = :joueurCourant) "
 	             	 	 + "or (joueur1 = :joueurCourant "
-	             	 	 + "and joueur2 = :joueurConnecte)";			
+	             	 	 + "and joueur2 = :joueurConnecte)";	
 
 			Query query = session.createQuery(hql);
 			query.setParameter("joueurConnecte", joueurConnecte.getId());
 			query.setParameter("joueurCourant", joueurCourant.getId());
 			
 			if(!query.list().isEmpty())
+
 			{
 				rencontre = true;
-			}			
-			
+			}				
+
 			HibernateUtil.closeSession();
 		}
 		catch(HibernateException e)
@@ -148,5 +150,4 @@ public class PartieRepository
 		}
 		return rencontre;
 	}
-		
 }

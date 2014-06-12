@@ -57,6 +57,21 @@ public class JoueurRepository
 		return j;
 	}
 	
+	public static void invite(Joueur j1, Joueur j2)
+	{
+		j2.addToInvitations(j1);
+		update(j2);
+	}
+	
+	public static void removeInvitation(Joueur j1, Joueur j2)
+	{
+		boolean ok = j1.getInvitations().remove(j2);
+		if(ok)
+		{
+			update(j1);
+		}
+	}
+	
 	public static Joueur find(String pseudo)
 	{
 		boolean exist = false;

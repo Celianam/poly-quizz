@@ -21,7 +21,7 @@ public class QuestionRepository
 			Session session = HibernateUtil.currentSession();
 			Query query = session.createQuery("from Question");
 			Iterator<Question> questions = query.iterate();
-			
+
 			while(questions.hasNext())
 			{
 				listQuestions.add((Question)questions.next());
@@ -60,11 +60,11 @@ public class QuestionRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("FROM Question WHERE theme = :theme ORDER BY RAND() LIMIT 3");
+			Query query = session.createQuery("FROM Question WHERE theme = :theme ORDER BY RAND()");
 			query.setParameter("theme", theme.getId());
+			query.setMaxResults(3);
 			
 			Iterator<Question> questions = query.iterate();
-			
 			while(questions.hasNext())
 			{
 				listQuestions.add((Question)questions.next());
