@@ -121,7 +121,7 @@
 										if (joueurReprendre != null) {
 											Partie p2 = PartieRepository.recupPartieEnCours(joueurConnecte, joueurReprendre);
 											session.setAttribute("idPartieEnCours", p2.getId());
-											if(p2.getNumRoundJoueur1() == p2.getScoreJoueur2()) {
+											if(p2.getNumRoundJoueur1().equals(p2.getNumRoundJoueur2()) ) {
 												response.sendRedirect("/PolyQuizz/Connected_Zone/Game_Zone/ChoiceTheme.jsp");
 											} else {
 												response.sendRedirect("/PolyQuizz/Connected_Zone/Game_Zone/roundplay.jsp");
