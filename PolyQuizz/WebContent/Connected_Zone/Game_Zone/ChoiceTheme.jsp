@@ -31,8 +31,8 @@
 	</div>
 	<%  // Ce if n'est jamais censé arrivé :
 		if (session.getAttribute("idPartieEnCours") == null) {
-			response.sendRedirect("../../index.jsp");
-			return;
+ 			response.sendRedirect("../index.jsp");
+			return; 
 		}else
 		{
 			// Je recupere la partie en cours
@@ -73,14 +73,16 @@
 			// Si un thème à été choisi, on affecte au round courant 3 questions et on redirige vers la page des questions
 			if(_estChoisi = true)
 			{
-				
+				Theme t = ThemeRepository.find(themeChoisi);
+				QuestionRepository.random3Questions(t, p.getRoundCourant());
+				response.sendRedirect("roundplay.jsp");
+				return;
 			}
-			
-			// Click sur image => change la valeur du thème :
 		}
 	%>
 
 	 <!-- Réponses -->
+	 <form role="form" action="ChoiceTheme.jsp" method="post">
 	<div class="panel panel-default">
 		<div class="panel-heading"><h3 class="panel-title"><strong>Sur quel thème allez-vous vous affronter ?</strong></h3></div>
 		<div class="panel-body">
@@ -89,20 +91,21 @@
 			<table class="table table-striped">  
         <tbody>  
           <tr>  
-	       <td><center><input type="button" name="Cinema" style="BACKGROUND-IMAGE: url(../../img/Cinema_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
-            <td><center><input type="button" name="Histoire" style="BACKGROUND-IMAGE: url(../../img/Histoire_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
-            <td><center><input type="button" name="Litterature" style="BACKGROUND-IMAGE: url(../../img/Litterature_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+	       <td><center><input type="submit" value="" name="Cinema" style="BACKGROUND-IMAGE: url(../../img/Cinema_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+            <td><center><input type="submit" value="" name="Histoire" style="BACKGROUND-IMAGE: url(../../img/Histoire_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+            <td><center><input type="submit" value="" name="Litterature" style="BACKGROUND-IMAGE: url(../../img/Litterature_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
           </tr>
           <tr>  
-	       <td><center><input type="button" name="Musique" style="BACKGROUND-IMAGE: url(../../img/Musique_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
-            <td><center><input type="button" name="Technologie" style="BACKGROUND-IMAGE: url(../../img/Technologie_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
-            <td><center><input type="button" name="JVideo" style="BACKGROUND-IMAGE: url(../../img/jvideo_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+	       <td><center><input type="submit" value="" name="Musique" style="BACKGROUND-IMAGE: url(../../img/Musique_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+            <td><center><input type="submit" value="" name="Technologie" style="BACKGROUND-IMAGE: url(../../img/Technologie_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+            <td><center><input type="submit" value="" name="JVideo" style="BACKGROUND-IMAGE: url(../../img/jvideo_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
           </tr>
         </tbody>  
       </table>
-			</div>
-	  </div>
+	 </div>
+	 </div>
 	</div>
+	</form>
 
 
 
