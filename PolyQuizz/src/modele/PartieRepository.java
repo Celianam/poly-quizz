@@ -116,46 +116,29 @@ public class PartieRepository
 			}
 			e.printStackTrace();
 		}
-	}
+	}		
 	
-	public static List<Partie> rencontre(int joueurCourant, int joueurListe)
+	public static boolean rencontre(Joueur joueurConnecte, Joueur joueurCourant)
 	{
-		boolean exist = false;
-		List<Partie> listParties = new ArrayList<Partie>();
+		boolean rencontre = false;
 		
 		try
 		{
 			Session session = HibernateUtil.currentSession();
 			String hql = "from Partie "  + 
-	             	 	 "where joueur1 = :joueurCourant "
-	             	 	 + "and joueur2 =:joueurListe ";
+	             	 	 "where (joueur1 = :joueurConnecte "
+	             	 	 + "and joueur2 = :joueurCourant) "
+	             	 	 + "or (joueur1 = :joueurCourant "
+	             	 	 + "and joueur2 = :joueurConnecte)";			
+
 			Query query = session.createQuery(hql);
-			query.setParameter("joueurCourant", joueurCourant);
-			query.setParameter("joueurListe", joueurListe);
+			query.setParameter("joueurConnecte", joueurConnecte.getId());
+			query.setParameter("joueurCourant", joueurCourant.getId());
 			
-			String hql2 = "from Partie "  + 
-            	 	 "where joueur1 = :joueurListe "
-            	 	 + "and joueur2 =:joueurCourant";
-			Query query2 = session.createQuery(hql2);
-			query2.setParameter("joueurCourant", joueurCourant);
-			query2.setParameter("joueurListe", joueurListe);
-			
-			if(query.list().size() == 1 || query2.list().size() == 1)
+			if(!query.list().isEmpty())
 			{
-				exist = true;
-			}
-			
-			Iterator<Partie> parties = query.iterate();
-			Iterator<Partie> parties2 = query2.iterate();
-			
-			while(parties.hasNext())
-			{
-				listParties.add((Partie)parties.next());
-			}
-			while(parties2.hasNext())
-			{
-				listParties.add((Partie)parties2.next());
-			}
+				rencontre = true;
+			}			
 			
 			HibernateUtil.closeSession();
 		}
@@ -163,7 +146,7 @@ public class PartieRepository
 		{
 			e.printStackTrace();
 		}
-		return listParties;
+		return rencontre;
 	}
 		
 }
