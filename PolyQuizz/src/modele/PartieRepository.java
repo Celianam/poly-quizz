@@ -196,8 +196,22 @@ public class PartieRepository
 			score = p.getScoreJoueur2();
 		}
 		
-		update(p);
 		return score;
+	}
+	
+	public static int getNumRoundJoueurCourant(Partie p)
+	{
+		int num = 0;
+		if(p.getJoueurCourant().equals(p.getJoueur1()))
+		{
+			num = p.getNumRoundJoueur1();
+		}
+		else
+		{
+			num = p.getNumRoundJoueur2();
+		}
+		
+		return num;
 	}
 	
 	public static int nbVictoires(Joueur joueurCourant, Joueur joueurAdversaire)
