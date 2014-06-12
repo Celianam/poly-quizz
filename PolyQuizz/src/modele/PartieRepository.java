@@ -200,6 +200,42 @@ public class PartieRepository
 		return score;
 	}
 	
+	public static int incrementerRoundJoueurCourant(Partie p)
+	{
+		int newRound = 0;
+		if(p.getJoueurCourant().equals(p.getJoueur1()))
+		{
+			newRound = p.getNumRoundJoueur1();
+			newRound++;
+			p.setNumRoundJoueur1(newRound);
+		}
+		else
+		{
+			newRound = p.getNumRoundJoueur2();
+			newRound++;
+			p.setNumRoundJoueur2(newRound);
+		}
+		
+		update(p);
+		return newRound;
+	}
+	
+	public static int getRoundJoueurCourant(Partie p)
+	{
+		int round = 0;
+		if(p.getJoueurCourant().equals(p.getJoueur1()))
+		{
+			round = p.getNumRoundJoueur1();
+		}
+		else
+		{
+			round = p.getNumRoundJoueur2();
+		}
+		
+		update(p);
+		return round;
+	}
+	
 	public static int nbVictoires(Joueur joueurCourant, Joueur joueurAdversaire)
 	{
 		int nbVictoires = 0;
