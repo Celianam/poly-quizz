@@ -132,8 +132,11 @@
 											JoueurRepository.removeInvitation(joueurCourant, hote);
 											//liste.remove(hote);
 											//JoueurRepository.update(joueurCourant);
+											p.setRoundJoueur1(1);
+											p.setRoundJoueur2(1);
 											PartieRepository.update(p);
 											accepter = false;
+											session.setAttribute("idPartieEnCours", p.getId());
 											response.sendRedirect("/PolyQuizz/Connected_Zone/Game_Zone/ChoiceTheme.jsp");
 										} else if (refuser) {
 											JoueurRepository.removeInvitation(joueurCourant, hote);
