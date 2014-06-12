@@ -134,6 +134,7 @@
 											//JoueurRepository.update(joueurCourant);
 											PartieRepository.update(p);
 											accepter = false;
+											session.setAttribute("partieEnCours", p);
 											response.sendRedirect("/PolyQuizz/Connected_Zone/Game_Zone/ChoiceTheme.jsp");
 										} else if (refuser) {
 											JoueurRepository.removeInvitation(joueurCourant, hote);
