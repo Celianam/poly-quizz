@@ -35,7 +35,8 @@
   	<form role="form" action="menu.jsp" method="post">
   		<button type="submit" name="disconnect" class="btn btn-primary">Deconnexion</button>
   	</form>
-  </li>  	
+  </li> 
+  <li><a href="">Bienvenue <%= joueurCourant.getPseudo() %></a></li> 	
   		
 		<%
 			if (request.getParameter("disconnect") != null) {
