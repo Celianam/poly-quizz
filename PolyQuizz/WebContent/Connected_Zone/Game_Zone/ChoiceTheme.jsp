@@ -55,9 +55,9 @@
 				themeChoisi = "Musique";
 				_estChoisi = true;
 			}
-			if(request.getParameter("JVideo")!=null)
+			if(request.getParameter("Jeux Videos")!=null)
 			{
-				themeChoisi = "JVideo";
+				themeChoisi = "Jeux Videos";
 				_estChoisi = true;
 			}
 			if(request.getParameter("Technologie")!=null)
@@ -102,7 +102,7 @@
           <tr>  
 	       <td><center><input type="submit" value="" name="Musique" style="BACKGROUND-IMAGE: url(../../img/Musique_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
             <td><center><input type="submit" value="" name="Technologie" style="BACKGROUND-IMAGE: url(../../img/Technologie_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
-            <td><center><input type="submit" value="" name="JVideo" style="BACKGROUND-IMAGE: url(../../img/jvideo_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
+            <td><center><input type="submit" value="" name="Jeux Videos" style="BACKGROUND-IMAGE: url(../../img/jvideo_icone.png) ; HEIGHT: 200px; WIDTH: 200px"/></center></td>
           </tr>
         </tbody>  
       </table>
