@@ -54,9 +54,8 @@ public class QuestionRepository
 		return j;
 	}
 	
-	public static List<Question> random3Questions(Theme theme)
+	public static void random3Questions(Theme theme, Round round)
 	{
-		List<Question> listQuestions = new ArrayList<Question>();
 		try
 		{
 			Session session = HibernateUtil.currentSession();
@@ -67,8 +66,9 @@ public class QuestionRepository
 			Iterator<Question> questions = query.iterate();
 			while(questions.hasNext())
 			{
-				listQuestions.add((Question)questions.next());
+				round.addToQuestions((Question)questions.next());
 			}
+			RoundRepository.update(round);
 			
 			HibernateUtil.closeSession();
 		}
@@ -76,8 +76,6 @@ public class QuestionRepository
 		{
 			e.printStackTrace();
 		}
-		
-		return listQuestions;
 	}
 	
 	public static void save(Question question)
