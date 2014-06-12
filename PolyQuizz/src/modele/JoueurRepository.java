@@ -255,10 +255,10 @@ public class JoueurRepository
 			String sql = "select id from joueur where id <> " + id
 					+ " and id not in "
 					+ "(select joueur1 from partie where joueur2 = " + id
-					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4)) "
+					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 or numRoundJoueur1 IS NULL or numRoundJoueur2 IS NULL)) "
 					+ "and id not in "
 					+ "(select joueur2 from partie where joueur1 = " + id
-					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4)) "
+					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 or numRoundJoueur1 IS NULL or numRoundJoueur2 IS NULL)) "
 					+ "and id not in "
 					+ "(select joueurCreateur from invitation where joueurEnAttente = " + id + ")"
 					+ " and id not in "

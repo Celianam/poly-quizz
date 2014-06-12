@@ -10,10 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%
-	String pseudoJoueurCourant = ((Joueur) session
-			.getAttribute("joueur")).getPseudo();
-%>
+
 <title>Poly'Quizz</title>
 <!-- On ouvre la fenêtre �  la largeur de l'écran -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,16 +59,29 @@
 							</thead>
 							<tbody>
 								<%
-										int id = ((Joueur) session.getAttribute("joueur")).getId();
-										Joueur joueurCourant = JoueurRepository.find(id);
-										java.util.Set<Joueur> liste = joueurCourant.getInvitations();
-										boolean accepter = false;
-										boolean refuser = false;
+									if (session.getAttribute("joueur") == null) {
+										response.sendRedirect("/PolyQuizz/index.jsp");
+										return;
+									}
+									int id = ((Joueur) session.getAttribute("joueur")).getId();
+									Joueur joueurCourant = JoueurRepository.find(id);
+									java.util.Set<Joueur> liste = joueurCourant.getInvitations();
+									boolean accepter = false;
+									boolean refuser = false;
 
-										Joueur hote = null;
+									Joueur hote = null;
 
-										for (Joueur j : liste) {
-									%>
+									for (Joueur j : liste) {
+										
+										String iconRencontre = new String();
+										boolean rencontre = PartieRepository.dejaRencontre(
+												joueurCourant, j);
+										if (rencontre) {
+											iconRencontre = "ok";
+										} else {
+											iconRencontre = "remove";
+										}
+								%>
 								<tr>
 									<td><center><%=j.getPseudo()%></center></td>
 									<td><center>
@@ -82,56 +92,56 @@
 												<button type="submit" class="btn btn-danger"
 													name="<%=j.getPseudo()%>refuser">Refuser</button>
 												<%
-														if (request.getParameter(j.getPseudo() + "accepter") != null) {
-																hote = j;
-																accepter = true;
-																// response.sendRedirect("/PolyQuizz/Connected_Zone/Game_Zone/ChoiceTheme.jsp");
-															}
-															if (request.getParameter(j.getPseudo() + "refuser") != null) {
-																hote = j;
-																refuser = true;
-																//JoueurRepository.removeInvitation(joueurCourant, j);
-															}
-													%>
+													if (request.getParameter(j.getPseudo() + "accepter") != null) {
+															hote = j;
+															accepter = true;
+															// response.sendRedirect("/PolyQuizz/Connected_Zone/Game_Zone/ChoiceTheme.jsp");
+														}
+														if (request.getParameter(j.getPseudo() + "refuser") != null) {
+															hote = j;
+															refuser = true;
+															//JoueurRepository.removeInvitation(joueurCourant, j);
+														}
+												%>
 											</div>
 										</center></td>
 									<td><center>
-											<span class="glyphicon glyphicon-ok"></span>
+												<span class="glyphicon glyphicon-<%=iconRencontre%>"></span>
 										</center></td>
 									<td><center>
 											<span class="badge-vert">3</span> <span class="badge-rouge">1</span>
 										</center></td>
 								</tr>
 								<%
-										}
-										if (hote != null) {
-											System.out.println("accepter = " + accepter);
-											System.out.println("refuser = " + refuser);
-											if (accepter) {
-												Partie p = new Partie();
-												p.setJoueur1(joueurCourant);
-												p.setJoueur2(hote);
-												p.setJoueurCourant(joueurCourant);
-												PartieRepository.save(p);
+									}
+									if (hote != null) {
+										System.out.println("accepter = " + accepter);
+										System.out.println("refuser = " + refuser);
+										if (accepter) {
+											Partie p = new Partie();
+											p.setJoueur1(joueurCourant);
+											p.setJoueur2(hote);
+											p.setJoueurCourant(joueurCourant);
+											PartieRepository.save(p);
 
-												Round r = new Round();
-												r.setPartie(p);
-												RoundRepository.save(r);
+											Round r = new Round();
+											r.setPartie(p);
+											RoundRepository.save(r);
 
-												p.setRoundCourant(r);
-												JoueurRepository.removeInvitation(joueurCourant, hote);
-												//liste.remove(hote);
-												//JoueurRepository.update(joueurCourant);
-												PartieRepository.update(p);
-												accepter = false;
-												response.sendRedirect("/PolyQuizz/Connected_Zone/Game_Zone/ChoiceTheme.jsp");
-											} else if (refuser) {
-												JoueurRepository.removeInvitation(joueurCourant, hote);
-												refuser = false;
-												response.sendRedirect("/PolyQuizz/Connected_Zone/invitation.jsp");
-											}
+											p.setRoundCourant(r);
+											JoueurRepository.removeInvitation(joueurCourant, hote);
+											//liste.remove(hote);
+											//JoueurRepository.update(joueurCourant);
+											PartieRepository.update(p);
+											accepter = false;
+											response.sendRedirect("/PolyQuizz/Connected_Zone/Game_Zone/ChoiceTheme.jsp");
+										} else if (refuser) {
+											JoueurRepository.removeInvitation(joueurCourant, hote);
+											refuser = false;
+											response.sendRedirect("/PolyQuizz/Connected_Zone/invitation.jsp");
 										}
-									%>
+									}
+								%>
 
 							</tbody>
 						</table>
@@ -164,19 +174,25 @@
 								</thead>
 								<tbody>
 									<%
-												Joueur joueurConnecte = (Joueur) session.getAttribute("joueur");
-												List<Joueur> joueursLibres = JoueurRepository
-														.joueursLibres(joueurConnecte);
-												for (Joueur j : joueursLibres) {
-													String iconRencontre2 = new String();
-													boolean rencontre = PartieRepository.dejaRencontre(
-															joueurConnecte, j);
-													if (rencontre) {
-														iconRencontre2 = "ok";
-													} else {
-														iconRencontre2 = "remove";
-													}
-											%>
+										if (session.getAttribute("joueur") == null) {
+											response.sendRedirect("/PolyQuizz/index.jsp");
+											return;
+										}
+										Joueur joueurConnecte = (Joueur) session.getAttribute("joueur");
+										List<Joueur> joueursLibres = JoueurRepository
+												.joueursLibres(joueurConnecte);
+										Joueur joueurInvite = null;
+
+										for (Joueur j : joueursLibres) {
+											String iconRencontre2 = new String();
+											boolean rencontre = PartieRepository.dejaRencontre(
+													joueurConnecte, j);
+											if (rencontre) {
+												iconRencontre2 = "ok";
+											} else {
+												iconRencontre2 = "remove";
+											}
+									%>
 
 
 									<tr>
@@ -185,6 +201,11 @@
 												<div class="btn-group">
 													<input class="btn btn-primary" type="submit"
 														name="inviter<%=j.getPseudo()%>" value="Inviter" />
+													<%
+														if (request.getParameter("inviter" + j.getPseudo()) != null) {
+																joueurInvite = j;
+															}
+													%>
 												</div>
 											</center></td>
 										<td><center>
@@ -197,16 +218,13 @@
 
 
 									<%
-												}
+										}
 
-												for (Joueur j : joueursLibres) {
-
-													if (request.getParameter("inviter" + j.getPseudo()) != null) {
-
-													}
-
-												}
-											%>
+										if (joueurInvite != null) {
+											JoueurRepository.invite(joueurConnecte, joueurInvite);
+											response.sendRedirect("/PolyQuizz/Connected_Zone/invitation.jsp");
+										}
+									%>
 								</tbody>
 							</table>
 						</form>
