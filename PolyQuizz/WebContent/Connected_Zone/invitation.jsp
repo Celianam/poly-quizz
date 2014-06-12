@@ -40,7 +40,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				<strong>Invitation(s) recue(s)</strong>
+				<strong>Invitation(s) reçue(s)</strong>
 			</h3>
 		</div>
 		<div class="panel-body">
@@ -74,13 +74,47 @@
 									for (Joueur j : liste) {
 										
 										String iconRencontre = new String();
-										boolean rencontre = PartieRepository.dejaRencontre(
-												joueurCourant, j);
-										if (rencontre) {
+										boolean dejaRencontre = PartieRepository.dejaRencontre(joueurCourant, j);
+										if (dejaRencontre) {
 											iconRencontre = "ok";
-										} else {
+										}
+										else {
 											iconRencontre = "remove";
 										}
+										// Fin rencontre
+										
+										// Calcul score
+										int nbVictoire = 0;
+										int nbDefaite = 0;
+										List<Partie> listParties = PartieRepository.recupListeParties(joueurCourant, j);
+										for(Partie p : listParties)
+										{
+											if(p.getNumRoundJoueur1() > 3 && p.getNumRoundJoueur2() > 3)
+											{
+												int scoreJoueurCourant = 0; // Joueur courant
+												int scoreJoueurHote = 0;	// Joueur hote
+												
+												if(j.equals(p.getJoueur1()))
+												{
+													scoreJoueurHote = p.getScoreJoueur1();
+													scoreJoueurCourant = p.getScoreJoueur2();
+												}
+												else if(j.equals(p.getJoueur2()))
+												{
+													scoreJoueurHote = p.getScoreJoueur2();
+													scoreJoueurCourant = p.getScoreJoueur1();
+												}
+												
+												if(scoreJoueurCourant != scoreJoueurHote)
+												{
+													if(scoreJoueurCourant > scoreJoueurHote)
+														nbVictoire++;
+													else
+														nbDefaite++;
+												}
+											}
+										}
+										// Fin calcul score
 								%>
 								<tr>
 									<td><center><%=j.getPseudo()%></center></td>
@@ -109,7 +143,7 @@
 												<span class="glyphicon glyphicon-<%=iconRencontre%>"></span>
 										</center></td>
 									<td><center>
-											<span class="badge-vert">3</span> <span class="badge-rouge">1</span>
+											<span class="badge-vert"><%=nbVictoire%></span> <span class="badge-rouge"><%=nbDefaite%></span>
 										</center></td>
 								</tr>
 								<%
@@ -132,8 +166,8 @@
 											JoueurRepository.removeInvitation(joueurCourant, hote);
 											//liste.remove(hote);
 											//JoueurRepository.update(joueurCourant);
-											p.setRoundJoueur1(1);
-											p.setRoundJoueur2(1);
+											p.setNumRoundJoueur1(1);
+											p.setNumRoundJoueur2(1);
 											PartieRepository.update(p);
 											accepter = false;
 											session.setAttribute("idPartieEnCours", p.getId());
@@ -187,14 +221,49 @@
 										Joueur joueurInvite = null;
 
 										for (Joueur j : joueursLibres) {
+											// Rencontre
 											String iconRencontre2 = new String();
-											boolean rencontre = PartieRepository.dejaRencontre(
-													joueurConnecte, j);
-											if (rencontre) {
+											boolean dejaRencontre = PartieRepository.dejaRencontre(joueurCourant, j);
+											if (dejaRencontre) {
 												iconRencontre2 = "ok";
-											} else {
+											}
+											else {
 												iconRencontre2 = "remove";
 											}
+											// Fin rencontre
+											
+											// Calcul score
+											int nbVictoire = 0;
+											int nbDefaite = 0;
+											List<Partie> listParties = PartieRepository.recupListeParties(joueurCourant, j);
+											for(Partie p : listParties)
+											{
+												if(p.getNumRoundJoueur1() > 3 && p.getNumRoundJoueur2() > 3)
+												{
+													int scoreJoueurCourant = 0; // Joueur courant
+													int scoreJoueurHote = 0;	// Joueur hote
+													
+													if(j.equals(p.getJoueur1()))
+													{
+														scoreJoueurHote = p.getScoreJoueur1();
+														scoreJoueurCourant = p.getScoreJoueur2();
+													}
+													else if(j.equals(p.getJoueur2()))
+													{
+														scoreJoueurHote = p.getScoreJoueur2();
+														scoreJoueurCourant = p.getScoreJoueur1();
+													}
+													
+													if(scoreJoueurCourant != scoreJoueurHote)
+													{
+														if(scoreJoueurCourant > scoreJoueurHote)
+															nbVictoire++;
+														else
+															nbDefaite++;
+													}
+												}
+											}
+											// Fin calcul score
 									%>
 
 
@@ -215,7 +284,7 @@
 												<span class="glyphicon glyphicon-<%=iconRencontre2%>"></span>
 											</center></td>
 										<td><center>
-												<span class="badge-vert">3</span> <span class="badge-rouge">1</span>
+												<span class="badge-vert"><%=nbVictoire%></span> <span class="badge-rouge"><%=nbDefaite%></span>
 											</center></td>
 									</tr>
 
