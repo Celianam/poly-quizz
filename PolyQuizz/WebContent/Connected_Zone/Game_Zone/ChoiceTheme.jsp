@@ -42,7 +42,7 @@
 		
 			if(request.getParameter("Cinema")!=null)
 			{
-				themeChoisi = "Cinema";
+				themeChoisi = "Cinéma";
 				_estChoisi = true;
 			}
 			if(request.getParameter("Histoire")!=null)
