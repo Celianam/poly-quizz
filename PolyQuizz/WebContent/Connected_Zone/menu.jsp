@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
+<%@page import="modele.*"%>
+
 <ul class="nav nav-tabs">
   <li><a href="index.jsp">Accueil</a></li>
   <li class="dropdown">
@@ -5,7 +9,17 @@
       Jeu <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li><a href="invitation.jsp">Invitations <span class="badge-bleu">5</span></a></li>
+    <%
+    if (session.getAttribute("joueur") == null) {
+		response.sendRedirect("/PolyQuizz/index.jsp");
+		return;
+	}
+	int id = ((Joueur) session.getAttribute("joueur")).getId();
+	Joueur joueurCourant = JoueurRepository.find(id);
+	java.util.Set<Joueur> liste = joueurCourant.getInvitations();
+	int nbInvitations = liste.size();
+    %>
+      <li><a href="invitation.jsp">Invitations <span class="badge-bleu"><%=nbInvitations %></span></a></li>
       <li><a href="historic.jsp">Historique de jeu</a></li>
     </ul>
   </li>

@@ -118,11 +118,9 @@ public class PartieRepository
 		}
 	}		
 	
-	public static boolean dejaRencontre(Joueur joueurConnecte, Joueur joueurCourant)
-
+	public static List<Partie> recupListeParties(Joueur joueurConnecte, Joueur joueurCourant)
 	{
-		boolean rencontre = false;
-		
+		List<Partie> listParties = new ArrayList<Partie>();
 		try
 		{
 			Session session = HibernateUtil.currentSession();
@@ -137,9 +135,13 @@ public class PartieRepository
 			query.setParameter("joueurCourant", joueurCourant.getId());
 			
 			if(!query.list().isEmpty())
-
 			{
-				rencontre = true;
+				// Liste des parties
+				Iterator<Partie> parties = query.iterate();
+				while(parties.hasNext())
+				{
+					listParties.add((Partie)parties.next());
+				}
 			}				
 
 			HibernateUtil.closeSession();
@@ -148,6 +150,17 @@ public class PartieRepository
 		{
 			e.printStackTrace();
 		}
+		return listParties;
+	}
+	
+	public static boolean dejaRencontre(Joueur joueurConnecte, Joueur joueurCourant)
+	{
+		boolean rencontre = false;
+		
+		List listParties = recupListeParties(joueurConnecte, joueurCourant);
+		if(listParties.size() > 0)
+			rencontre = true;
+		
 		return rencontre;
 	}
 }

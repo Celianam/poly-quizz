@@ -44,16 +44,15 @@
 	{
 		try
 		{
-			JoueurRepository.exist(pseudo, mdp.getBytes());
-			login = true;
+			login = JoueurRepository.exist(pseudo, mdp.getBytes());
 		}
 		catch(Exception e)
 		{
 			excepLogin = e.getMessage();
 		}
-
 	}
 	//*/
+	
 
 	// Si joueur reconnu, redirection page joueur
 	if(pseudoOK && mdpOK && login) {
@@ -61,8 +60,6 @@
 		session.setAttribute("joueur", joueur);
 		response.sendRedirect("/PolyQuizz/Connected_Zone/index.jsp");
 	}
-
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -106,8 +103,9 @@
   						</div>
   						
   						<div>
-  							<span style="color:red"><%= excepLogin %></span>
+  							<span style="color:red"><%= excepLogin %></span>  							
   						</div>
+
   						<button type="submit" class="btn btn-sm btn-default">Sign in</button>
 					</form>
   				</div>
