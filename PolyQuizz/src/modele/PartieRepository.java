@@ -198,6 +198,20 @@ public class PartieRepository
 		return score;
 	}
 	
+	public static int getScoreJoueurAdversaire(Partie p)
+	{
+		int score = 0;
+		if(p.getJoueurCourant().equals(p.getJoueur1()))
+		{
+			score = p.getScoreJoueur2();
+		}
+		else
+		{
+			score = p.getScoreJoueur1();
+		}
+		return score;
+	}
+	
 	public static int incrementerRoundJoueurCourant(Partie p)
 	{
 		int newRound = 0;
@@ -228,6 +242,74 @@ public class PartieRepository
 		else
 		{
 			round = p.getNumRoundJoueur2();
+		}
+		return round;
+	}
+	
+	public static int getRoundJoueurCourantPartieEnCours(Joueur joueurConnecte, Joueur joueurCourant)
+	{
+		int round = 0;
+		Partie p = recupPartieEnCours(joueurConnecte, joueurCourant);
+		
+		if(p.getJoueur1().equals(joueurConnecte))
+		{
+			round = p.getNumRoundJoueur1();
+		}
+		else if(p.getJoueur2().equals(joueurConnecte))
+		{
+			round = p.getNumRoundJoueur2();
+		}		
+		
+		return round;
+	}
+	
+	public static Partie recupPartieEnCours(Joueur joueurConnecte, Joueur joueurCourant)
+	{
+		List<Partie> listParties = new ArrayList<Partie>();
+		Partie partie = new Partie();
+
+		try
+		{
+			Session session = HibernateUtil.currentSession();
+
+			String hql = "from Partie "  + 
+            	 	 "where ((joueur1 = :joueurConnecte "
+            	 	 + "and joueur2 = :joueurCourant) "
+            	 	 + "or (joueur1 = :joueurCourant "
+            	 	 + "and joueur2 = :joueurConnecte))"
+            	 	+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 ) ";
+			Query query = session.createQuery(hql);
+			query.setParameter("joueurConnecte", joueurConnecte.getId());
+			query.setParameter("joueurCourant", joueurCourant.getId());				
+			
+			listParties = query.list();
+			if(!listParties.isEmpty()) {
+				Iterator<Partie> itId = listParties.iterator();
+				while(itId.hasNext())
+				{
+					partie = itId.next();
+				}	
+			}			
+			
+			HibernateUtil.closeSession();
+		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		return partie;
+	}
+	
+	public static int getRoundAdversaire(Partie p)
+	{
+		int round = 0;
+		if(p.getJoueurCourant().equals(p.getJoueur1()))
+		{
+			round = p.getNumRoundJoueur2();
+		}
+		else
+		{
+			round = p.getNumRoundJoueur1();
 		}
 		return round;
 	}

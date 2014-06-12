@@ -192,7 +192,7 @@
 										for (Joueur j : joueursLibres) {
 
 											String iconRencontre2 = new String();
-											boolean dejaRencontre = PartieRepository.dejaRencontre(joueurCourant, j);
+											boolean dejaRencontre = PartieRepository.dejaRencontre(joueurConnecte, j);
 											if (dejaRencontre) {
 												iconRencontre2 = "ok";
 											}
