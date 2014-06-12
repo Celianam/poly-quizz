@@ -12,6 +12,10 @@ html {
 }
 body {
   margin: 0;
+  background: url('../../img/background4.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: compact;
 }
 article,
 aside,
