@@ -75,9 +75,12 @@
 			{
 				Theme t = ThemeRepository.find(themeChoisi);
 				//ThemeRepository.save(t);
-				QuestionRepository.random3Questions(t, p.getRoundCourant());
-				response.sendRedirect("roundplay.jsp");
-				return;
+				boolean testquestion = QuestionRepository.random3Questions(t, p.getRoundCourant());
+				if(testquestion==true)
+				{
+					response.sendRedirect("roundplay.jsp");
+					return;
+				}
 			}
 		}
 	%>
