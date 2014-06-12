@@ -199,4 +199,70 @@ public class PartieRepository
 		update(p);
 		return score;
 	}
+	
+	public static int nbVictoires(Joueur joueurCourant, Joueur joueurAdversaire)
+	{
+		int nbVictoires = 0;
+		List<Partie> listParties = PartieRepository.recupListeParties(joueurCourant, joueurAdversaire);
+		for(Partie p : listParties)
+		{
+			if(p.getNumRoundJoueur1() > 3 && p.getNumRoundJoueur2() > 3)
+			{
+				int scoreJoueurCourant = 0; 	// Joueur courant
+				int scoreJoueurAdversaire = 0;	// Joueur adversaire
+				
+				if(joueurAdversaire.equals(p.getJoueur1()))
+				{
+					scoreJoueurAdversaire = p.getScoreJoueur1();
+					scoreJoueurCourant = p.getScoreJoueur2();
+				}
+				else if(joueurAdversaire.equals(p.getJoueur2()))
+				{
+					scoreJoueurAdversaire = p.getScoreJoueur2();
+					scoreJoueurCourant = p.getScoreJoueur1();
+				}
+				
+				if(scoreJoueurCourant != scoreJoueurAdversaire)
+				{
+					if(scoreJoueurCourant > scoreJoueurAdversaire)
+						nbVictoires++;
+				}
+			}
+		}
+		
+		return nbVictoires;
+	}
+	
+	public static int nbDefaites(Joueur joueurCourant, Joueur joueurAdversaire)
+	{
+		int nbDefaites = 0;
+		List<Partie> listParties = PartieRepository.recupListeParties(joueurCourant, joueurAdversaire);
+		for(Partie p : listParties)
+		{
+			if(p.getNumRoundJoueur1() > 3 && p.getNumRoundJoueur2() > 3)
+			{
+				int scoreJoueurCourant = 0; 	// Joueur courant
+				int scoreJoueurAdversaire = 0;	// Joueur adversaire
+				
+				if(joueurAdversaire.equals(p.getJoueur1()))
+				{
+					scoreJoueurAdversaire = p.getScoreJoueur1();
+					scoreJoueurCourant = p.getScoreJoueur2();
+				}
+				else if(joueurAdversaire.equals(p.getJoueur2()))
+				{
+					scoreJoueurAdversaire = p.getScoreJoueur2();
+					scoreJoueurCourant = p.getScoreJoueur1();
+				}
+				
+				if(scoreJoueurCourant != scoreJoueurAdversaire)
+				{
+					if(scoreJoueurCourant < scoreJoueurAdversaire)
+						nbDefaites++;
+				}
+			}
+		}
+		
+		return nbDefaites;
+	}
 }
