@@ -19,7 +19,7 @@ public class PartieRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from Partie");
+			Query query = session.createQuery("from PARTIE");
 			Iterator<Partie> parties = query.iterate();
 			
 			while(parties.hasNext())
@@ -124,7 +124,7 @@ public class PartieRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			String hql = "from Partie "  + 
+			String hql = "from PARTIE "  + 
 	             	 	 "where (joueur1 = :joueurConnecte "
 	             	 	 + "and joueur2 = :joueurCourant) "
 	             	 	 + "or (joueur1 = :joueurCourant "
@@ -281,7 +281,7 @@ public class PartieRepository
 		{
 			Session session = HibernateUtil.currentSession();
 
-			String hql = "from Partie "  + 
+			String hql = "from PARTIE "  + 
             	 	 "where ((joueur1 = :joueurConnecte "
             	 	 + "and joueur2 = :joueurCourant) "
             	 	 + "or (joueur1 = :joueurCourant "

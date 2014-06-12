@@ -22,7 +22,7 @@ public class JoueurRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from Joueur");
+			Query query = session.createQuery("from JOUEUR");
 			Iterator<Joueur> joueurs = query.iterate();
 			
 			while(joueurs.hasNext())
@@ -79,7 +79,7 @@ public class JoueurRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			String hql = "from Joueur "  + 
+			String hql = "from JOUEUR "  + 
 	             	 	 "where pseudo = :pseudo ";
 			Query query = session.createQuery(hql);
 			query.setParameter("pseudo", pseudo);
@@ -104,7 +104,7 @@ public class JoueurRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			String hql = "from Joueur "  + 
+			String hql = "from JOUEUR "  + 
 	             	 	 "where pseudo = :pseudo ";
 			Query query = session.createQuery(hql);
 			query.setParameter("pseudo", pseudo);
@@ -125,7 +125,7 @@ public class JoueurRepository
 		
 		try
 		{
-			String hql = "from Joueur "  + 
+			String hql = "from JOUEUR "  + 
 		             	 "where pseudo = :pseudo " + 
 					     "and mdp = :mdp";
 			Session session = HibernateUtil.currentSession();
@@ -258,17 +258,17 @@ public class JoueurRepository
 //			query.setParameter("joueurConnecte", joueur.getId());
 			
 			int id = joueur.getId();
-			String sql = "select id from joueur where id <> " + id
+			String sql = "select id from JOUEUR where id <> " + id
 					+ " and id not in "
-					+ "(select joueur1 from partie where joueur2 = " + id
+					+ "(select joueur1 from PARTIE where joueur2 = " + id
 					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4)) "
 					+ "and id not in "
-					+ "(select joueur2 from partie where joueur1 = " + id
+					+ "(select joueur2 from PARTIE where joueur1 = " + id
 					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4)) "
 					+ "and id not in "
-					+ "(select joueurCreateur from invitation where joueurEnAttente = " + id + ")"
+					+ "(select joueurCreateur from INVITATION where joueurEnAttente = " + id + ")"
 					+ " and id not in "
-					+ "(select joueurEnAttente from invitation where joueurCreateur = " + id + ")";
+					+ "(select joueurEnAttente from INVITATION where joueurCreateur = " + id + ")";
 			
 			Query query = session.createSQLQuery(sql);
 			
@@ -298,9 +298,9 @@ public class JoueurRepository
 			Session session = HibernateUtil.currentSession();
 			
 			int id = joueur.getId();
-			String sql = "select joueur1 from partie where joueur2 = " + id
+			String sql = "select joueur1 from PARTIE where joueur2 = " + id
 					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4 ) "
-					+ "UNION select joueur2 from partie where joueur1 = " + id
+					+ "UNION select joueur2 from PARTIE where joueur1 = " + id
 					+ " and (numRoundJoueur1 < 4 or numRoundJoueur2 < 4) ";					
 			
 			Query query = session.createSQLQuery(sql);			

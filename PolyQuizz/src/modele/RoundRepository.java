@@ -19,7 +19,7 @@ public class RoundRepository
 		try
 		{
 			Session session = HibernateUtil.currentSession();
-			Query query = session.createQuery("from Round");
+			Query query = session.createQuery("from ROUND");
 			Iterator<Round> rounds = query.iterate();
 			
 			while(rounds.hasNext())
