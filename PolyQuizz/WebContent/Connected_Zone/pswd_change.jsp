@@ -38,10 +38,6 @@
 		 		
 		 		if(request.getParameter("envois")!=null)
 		 		{
-		 			System.out.println(request.getParameter("actualpswd"));
-		 			System.out.println(request.getParameter("newpassword"));
-		 			System.out.println(request.getParameter("passwordConf"));
-		 			
 		 			if(request.getParameter("actualpswd")!=null && request.getParameter("newpassword")!=null && request.getParameter("passwordConf")!=null && request.getParameter("passwordConf").toString().equals(request.getParameter("newpassword").toString()))
 		 			{
 		 				String mdp = request.getParameter("actualpswd");
