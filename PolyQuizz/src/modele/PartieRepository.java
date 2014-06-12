@@ -184,6 +184,15 @@ public class PartieRepository
 		return newScore;
 	}
 	
+	public static Joueur getAdversaire(Partie p) {
+		Joueur rJoueur = p.getJoueur1();
+		if(p.getJoueurCourant().equals(p.getJoueur1()))
+		{
+			rJoueur = p.getJoueur2();
+		}
+		return rJoueur;
+	}
+	
 	public static int getScoreJoueurCourant(Partie p)
 	{
 		int score = 0;
