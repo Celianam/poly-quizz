@@ -76,26 +76,14 @@
 				r.setPartie(p);
 				RoundRepository.save(r);
 				p.setRoundCourant(r);
-				
-				// et on incrémente le round du joueur courant
-				PartieRepository.incrementerRoundJoueurCourant(p);
 			}
-			
-			if(PartieRepository.getRoundAdversaire(p) < 3 && PartieRepository.getRoundAdversaire(p) < PartieRepository.getRoundJoueurCourant(p)) {
+			else if(PartieRepository.getRoundAdversaire(p) < PartieRepository.getRoundJoueurCourant(p)) {
 				// C'est au tour de l'adversaire de jouer au round
 				p.setJoueurCourant(PartieRepository.getAdversaire(p));
-				
-			}
-			
+			}	
 		}
-		
 		PartieRepository.update(p);
 		%>
-		 
-		
-
-
-
     </div>
     
     <!-- IntÃ©gration de la libraire jQuery -->
