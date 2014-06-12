@@ -51,13 +51,6 @@
 	int nbTotal = listeQuestions.size();
 
 	String color = "black";
-	if (request.getParameter("color") != null) {
-		if (bonneReponse) {
-			color = "green";
-		} else {
-			color = "red";
-		}
-	}
 	int score = PartieRepository.getScoreJoueurCourant(partieCourante);
 %>
 
@@ -139,12 +132,19 @@
 						System.out.println("Score d " + score);
 					}
 				}
+				if (request.getParameter("color") != null) {
+					if (bonneReponse) {
+						color = "green";
+					} else {
+						color = "red";
+					}
+				}
 			%>
 
 			<p><%=q.getQuestion()%>
 			</p>
 			<p><%=cpt%>/<%=nbTotal%></p>
-			<span style="color:<%="color"%>">Score : <%=score%></span>
+			<span style="color:<%=color%>">Score : <%=score%></span>
 		</div>
 		<!-- Réponses -->
 		<div class="panel panel-default">
