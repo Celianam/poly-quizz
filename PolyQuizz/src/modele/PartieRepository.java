@@ -195,8 +195,6 @@ public class PartieRepository
 		{
 			score = p.getScoreJoueur2();
 		}
-		
-		update(p);
 		return score;
 	}
 	
@@ -231,8 +229,6 @@ public class PartieRepository
 		{
 			round = p.getNumRoundJoueur2();
 		}
-		
-		update(p);
 		return round;
 	}
 	
