@@ -32,13 +32,11 @@
 	Partie partieCourante = PartieRepository.find(Integer
 			.parseInt(session.getAttribute("idPartieEnCours")
 					.toString()));//Recoit l'id de la partie
-
 	System.out.println("Partie : " + partieCourante.getId());
 	Round roundCourant = partieCourante.getRoundCourant();
+	System.out.println("Round : "+roundCourant.getId());
 	java.util.Set<Question> listeQuestions = roundCourant
 			.getQuestions();
-	//for(Question q:listeQuestions)
-	//System.out.println(q.getQuestion());
 %>
 
 <%
@@ -79,19 +77,7 @@
 					}
 					j++;
 				}
-				
-				if (q == null) {
-					response.sendRedirect("finDeRound.jsp");
-					return;
-				}
-				
-				String rA = q.getReponseA();
-				String rB = q.getReponseB();
-				String rC = q.getReponseC();
-				String rD = q.getReponseD();
-				String bonneRep = q.getBonneReponse();
 
-				System.out.println("Bonne reponse " + bonneRep);
 				if (request.getParameter("A") != null) {
 					if (request.getParameter("A").equals(
 							request.getParameter("bonneRep"))) {
@@ -141,6 +127,19 @@
 						color = "red";
 					}
 				}
+				
+				if (q == null) {	
+					response.sendRedirect("finDeRound.jsp");
+					return;
+				}
+				
+				String rA = q.getReponseA();
+				String rB = q.getReponseB();
+				String rC = q.getReponseC();
+				String rD = q.getReponseD();
+				String bonneRep = q.getBonneReponse();
+
+				System.out.println("Bonne reponse " + bonneRep);
 			%>
 
 			<p><%=q.getQuestion()%>
